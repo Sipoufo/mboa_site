@@ -1,0 +1,85 @@
+{
+  "meta": {
+    "siteName": "Mboa",
+    "titleSuffix": "Mboa",
+    "defaultTitle": "Mboa — Cameroonian real estate, differently.",
+    "defaultDescription": "Find, visit and sign for your home in Douala and Yaoundé, all online. Verified listings, visits with a certified agent, the Mboa Contract signed online.",
+    "ogLocale": "en_US"
+  },
+  "a11y": {
+    "skipToContent": "Skip to content",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "mainNav": "Main navigation",
+    "footerNav": "Footer navigation",
+    "homeLink": "Mboa — home",
+    "languageSwitcher": "Site language",
+    "newTab": "(opens in a new tab)"
+  },
+  "nav": {
+    "home": "Home",
+    "project": "The project",
+    "market": "The market",
+    "audiences": "Who it's for",
+    "owners": "Owners",
+    "agents": "Become an agent",
+    "apps": "The apps",
+    "appMboa": "Mboa app",
+    "appMboaPro": "Mboa Pro app",
+    "trust": "Trust",
+    "pricing": "Pricing",
+    "roadmap": "Roadmap",
+    "vision": "Vision",
+    "about": "About",
+    "investors": "Investors",
+    "news": "News",
+    "press": "Press",
+    "faq": "FAQ",
+    "waitlist": "Waitlist",
+    "contact": "Contact",
+    "legalNotice": "Legal notice",
+    "terms": "Terms of use",
+    "privacy": "Privacy",
+    "cancellation": "Cancellation"
+  },
+  "topbar": {
+    "launch": "MVP launch: {date}",
+    "cta": "Join the waitlist"
+  },
+  "cta": {
+    "joinWaitlist": "Join the waitlist",
+    "discover": "Discover the project",
+    "backHome": "Back to home"
+  },
+  "common": {
+    "comingSoon": "Coming soon",
+    "subjectToChange": "Subject to change",
+    "toComplete": "[to be completed]"
+  },
+  "language": {
+    "fr": "Français",
+    "en": "English"
+  },
+  "footer": {
+    "tagline": "Home, differently.",
+    "pitch": "Find, visit and sign for your home in Douala and Yaoundé, all online.",
+    "colDiscover": "Discover",
+    "colJoin": "Join us",
+    "colLegal": "Legal",
+    "colContact": "Contact",
+    "rights": "All rights reserved.",
+    "follow": "Follow Mboa"
+  },
+  "home": {
+    "title": "Mboa — Cameroonian real estate, differently.",
+    "description": "Find, visit and sign for your home in Douala and Yaoundé, all online. Verified listings, visits with a certified agent, the Mboa Contract signed online.",
+    "eyebrow": "MVP launch: {date}",
+    "heading": "Finding a home shouldn't feel like a fight.",
+    "lead": "Mboa connects tenants with verified landlords, with visits led by a certified agent and a contract signed online."
+  },
+  "notFound": {
+    "title": "Page not found",
+    "heading": "This page doesn't exist — or no longer does.",
+    "lead": "The link may be broken. Head back home to discover Mboa."
+  }
+}

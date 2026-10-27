@@ -1,7 +1,7 @@
 # Project: Mboa Website — Astro Showcase Site
 
 > Public showcase website for the Mboa project — a Cameroonian real estate intermediation platform.
-> Astro (static) + React islands, bilingual FR/EN, deployed on Cloudflare Pages.
+> Astro (static) + React islands, bilingual FR/EN, deployed on Cloudflare Workers (static assets).
 > Content source of truth: the production docs in `MyHome/` (see *Source Documents*). Brand: `Doc 05` (graphic charter), `Doc 06` (brandbook).
 
 Guiding principle: **fast on a Cameroonian 3G connection, faithful to the docs, on-brand** — every page ships as static HTML, every claim traces back to a production doc or a founder decision, every pixel respects the charter.
@@ -26,7 +26,7 @@ Audiences: curious visitors · tenants · owners & agencies · agents · investo
 
 | Layer | Technology | Version | Role |
 |-------|-----------|---------|------|
-| Framework | **Astro** | 5.x (pin at init) | Static generation by default, file-based routing, i18n routing |
+| Framework | **Astro** | 7.x | Static generation by default, file-based routing, i18n routing. `build.format: "file"` + `trailingSlash: "never"` (`/en/index.astro` → `/en.html`, served at `/en`) |
 | Adapter | **@astrojs/cloudflare** | latest | On-demand routes only where needed (API endpoints, CMS admin, deep-link fallback) |
 | Interactive islands | **React** | 19.x | Only for components that need client-side state (forms, counter, carousel) |
 | Language | **TypeScript** | 5.x (strict) | `astro/tsconfigs/strict` |
@@ -36,16 +36,16 @@ Audiences: curious visitors · tenants · owners & agencies · agents · investo
 | i18n | Astro built-in i18n routing + `src/i18n/` dictionaries | bundled | FR (default) + EN |
 | Animations | Native CSS (scroll-driven animations, cross-document View Transitions) + **Motion** (`motion`, vanilla) | latest | Rich but light — see *Animations* |
 | Images | **astro:assets** (`<Image>`, `<Picture>`) | bundled | AVIF/WebP, responsive `srcset`, lazy loading |
-| Fonts | **Fontsource** (self-hosted) | — | Plus Jakarta Sans (display) + Inter (body) — no Google Fonts CDN |
+| Fonts | **Astro Fonts API** (`fontProviders.fontsource()`) | bundled | Plus Jakarta Sans (display) + Inter (body), downloaded at build and self-hosted — no Google Fonts CDN. Used via `<Font cssVariable=… />` in `BaseLayout` |
 | Icons | **astro-icon** + `@iconify-json/lucide` · `lucide-react` in islands | — | Lucide outline icons (Doc 05 §5.1) |
 | SEO | `@astrojs/sitemap` + JSON-LD helpers | — | Sitemap, hreflang, Open Graph, structured data |
 | Forms backend | Astro API routes (`prerender = false`) + **Cloudflare Turnstile** | — | Server-side validation, privacy-friendly anti-spam |
 | Mailing / lists | **Brevo** (API v3) | — | Waitlist, pioneer providers, agents — one list each, double opt-in |
 | Analytics | **Cloudflare Web Analytics** | — | Cookieless — no consent banner required |
-| Hosting | **Cloudflare Pages** | — | CDN, HTTPS, preview deployment per branch |
+| Hosting | **Cloudflare Workers** (static assets) | — | CDN, HTTPS, preview URL per branch. The Cloudflare adapter no longer supports Pages (Astro 6+). Config in `wrangler.jsonc` |
 | Lint / Format | ESLint (`eslint-plugin-astro`, `jsx-a11y`) + Prettier (`prettier-plugin-astro`, `prettier-plugin-tailwindcss`) | — | — |
-| Testing | **Vitest** (utils, endpoints) · **Playwright** + `@axe-core/playwright` (e2e, a11y) · **Lighthouse CI** | — | — |
-| Runtime | **Node.js** LTS | 24.x | Build tooling only |
+| Testing | **Vitest** (utils, endpoints) · **Playwright** + `@axe-core/playwright` (e2e, a11y) · **Lighthouse CI** | — | Vitest uses a plain Vite config (Astro's `getViteConfig()` loads the Cloudflare plugin, which rejects Vitest). Playwright runs the installed Google Chrome locally (`channel: "chrome"`), Playwright's Chromium in CI |
+| Runtime | **Node.js** | ≥ 22.12 | Build tooling only |
 | Package manager | **npm** | bundled with Node | One `package-lock.json`, committed |
 
 ---
@@ -69,7 +69,7 @@ The site's content is **not invented** — it is drawn from the production docs 
 | Terms of use, privacy policy, cancellation policy | `Mboa_Doc16_CGU_RGPD.md` |
 | Launch messages per target, pioneer program | `Mboa_Doc18_Go_To_Market.md` §1, §5 |
 | Data protection (ANTIC, e-commerce law) | `Mboa_Doc19_Cadre_Juridique.md` §2, §4 |
-| Waitlist mechanics, content strategy, news material | `Mboa_Doc20_Strategie_Contenu_Communaute.md` · `assets 2/Post_*.md` |
+| Waitlist mechanics, content strategy, news material | `Mboa_Doc20_Strategie_Contenu_Communaute.md` · `Réseaux sociaux/*/Post_*.md` |
 | Pending / settled decisions | `Mboa_Decisions_A_Finaliser.md` |
 | Brand assets (SVG/PNG logos, per-product logos) | `Mboa brand identity kit 2/logo-v2/` (v2 is final — ignore `pistes/`) |
 | Layout reference (style **and** structure) | `docs/references/layout-reference.webp` (this repo) |
@@ -121,13 +121,14 @@ FR is unprefixed, EN lives under `/en/` with localized slugs (`src/i18n/routes.t
 site-vitrine/
 ├── astro.config.mjs              # integrations (react, sitemap, icon), cloudflare adapter, i18n, site URL
 ├── tsconfig.json                 # extends astro/tsconfigs/strict
+├── wrangler.jsonc                # Cloudflare Workers config (name, vars, 404 handling) — no secrets
 ├── keystatic.config.ts           # CMS schema mirroring the content collections (added later)
+├── scripts/                      # one-off build helpers (generate-og.mjs)
 ├── public/
 │   ├── .well-known/
 │   │   ├── apple-app-site-association   # iOS Universal Links (no extension)
 │   │   └── assetlinks.json              # Android App Links
 │   ├── _headers                  # Cloudflare headers (AASA content-type, security headers, cache)
-│   ├── _redirects                # Cloudflare redirects
 │   ├── robots.txt
 │   └── favicon / og fallback images
 ├── docs/
@@ -142,7 +143,8 @@ site-vitrine/
 │   │   ├── layout/               # Header, Footer, MobileNav, LanguageSwitcher, SkipLink
 │   │   ├── sections/             # Hero, Problem, AppsShowcase, Audiences, Trust, Pricing,
 │   │   │                         # Roadmap, Countdown, Faq, Team, CtaBanner, WaitlistBlock…
-│   │   ├── brand/                # BrandPattern (M monogram texture), DecorDiscs
+│   │   ├── brand/                # BrandPattern (M monogram texture), DecorDiscs, Logo
+│   │   ├── views/                # One view per page, shared by the FR and EN route files (HomeView…)
 │   │   └── islands/              # React components — the ONLY place component JS lives
 │   │       ├── WaitlistForm.tsx
 │   │       ├── PioneerForm.tsx
@@ -189,6 +191,7 @@ site-vitrine/
 ```
 
 > **Absolute rule:** pages are composed of **sections**, sections of **ui** components. A page file contains layout + section composition + content lookups — no raw styling soup, no business logic.
+> Route files in `src/pages/` stay thin: they render the page's view (`src/components/views/`) with a `locale` prop, so FR and EN never diverge.
 
 ---
 
@@ -236,6 +239,7 @@ Every value the founder may change before a deploy lives in **one file**: `src/c
 - **Every visible string** comes from `src/i18n/{fr,en}.json` (UI) or a content collection (long text). No hardcoded copy.
 - `fr.json` and `en.json` must always have **identical keys** — enforced by a unit test.
 - The language switcher maps the current page to its counterpart via `routes.ts`, never back to home.
+- `liveRoutes` in `routes.ts` lists the pages that exist; navigation only links to those. Add a key in the same change that adds its pages (a unit test checks the files exist).
 - Every page emits `hreflang` alternates (`fr`, `en`, `x-default`) and a canonical URL.
 - EN is adapted, not translated word for word (Doc 06 §4.2). The founder proofreads EN.
 
@@ -254,7 +258,7 @@ Fields — **only what is needed** (data minimization, Doc 19 §4):
 
 | Form | Fields |
 |------|--------|
-| Waitlist | first name · email **or** WhatsApp number (at least one) · city (Douala / Yaoundé / Kribi / Bafoussam / other) · profile (tenant / owner / agency / agent / other) · consent |
+| Waitlist | first name · email **or** WhatsApp number (at least one) · city (Douala / Yaoundé / Kribi / Bafoussam / other) · profile (tenant / owner / agency / agent / other) · *optional* "What would make you use Mboa?" (Doc 20 §6) · consent |
 | Pioneer providers | first name · last name · WhatsApp · email (optional) · type (owner / agency) · city · number of properties (range) · consent |
 | Agents | first name · last name · WhatsApp · email (optional) · city · neighborhoods covered · consent |
 | Contact | name · email or WhatsApp · subject · message · consent |
@@ -289,7 +293,7 @@ The founder wants **rich animations** — they must stay cheap.
 - One `<title>` + `<meta name="description">` per page and locale, from the i18n dictionaries.
 - Open Graph image per key page (1200×630, Vert Forêt background, white logo — Doc 06 §2.2 style).
 - JSON-LD: `Organization` everywhere, `FAQPage` on the FAQ, `MobileApplication` only once store links exist.
-- `@astrojs/sitemap` with i18n alternates; preview deployments (`*.pages.dev`) send `X-Robots-Tag: noindex`.
+- `@astrojs/sitemap` with i18n alternates; preview URLs (`*.workers.dev`) send `X-Robots-Tag: noindex`.
 
 ## Future (not in the first release)
 
@@ -417,10 +421,10 @@ Any new color pairing must be checked at WCAG 2.1 AA before use.
 | Env | URL | Branch | Usage |
 |-----|-----|--------|-------|
 | `dev` | `http://localhost:4321` | any | Local development (`npm run dev`) |
-| `preview` | `https://<branch>.<project>.pages.dev` | `develop`, `feature/*`, `release/*` | Review before release — `noindex` |
+| `preview` | Workers preview URL per branch (`*.workers.dev`) | `develop`, `feature/*`, `release/*` | Review before release — `noindex` |
 | `production` | `https://mboa.cm` (domain to verify / purchase) | `main` | Public site |
 
-Hosting: Cloudflare Pages, same Cloudflare account as R2. Environment variables (Pages settings, never committed — `.env.example` documents them):
+Hosting: Cloudflare Workers, same Cloudflare account as R2. Plain values go in `wrangler.jsonc` `vars`; secrets via `npx wrangler secret put <KEY>`, read with `import { env } from "cloudflare:workers"` (`Astro.locals.runtime` no longer exists). Local secrets in `.dev.vars` (never committed — `.dev.vars.example` documents them):
 `PUBLIC_SITE_URL` · `PUBLIC_TURNSTILE_SITE_KEY` · `TURNSTILE_SECRET_KEY` · `BREVO_API_KEY` · `BREVO_LIST_WAITLIST` · `BREVO_LIST_PIONEERS` · `BREVO_LIST_AGENTS` · `CONTACT_INBOX` · `PUBLIC_CF_ANALYTICS_TOKEN` · `KEYSTATIC_GITHUB_CLIENT_ID` · `KEYSTATIC_GITHUB_CLIENT_SECRET` · `KEYSTATIC_SECRET`
 
 Only `PUBLIC_*` variables may be read in client code.
@@ -462,7 +466,8 @@ git flow hotfix finish <version>
 npm install                 # install dependencies
 npm run dev                 # dev server → http://localhost:4321
 npm run build               # build → dist/ (static pages + Cloudflare worker for on-demand routes)
-npm run preview             # serve the build locally through wrangler (endpoints included)
+npm run preview             # serve the build locally in workerd (`--background` to detach; `astro preview stop`)
+node scripts/generate-og.mjs # regenerate the default Open Graph image
 ```
 
 ## Quality
@@ -547,6 +552,6 @@ npm run lhci                # Lighthouse CI against the local build
 - **NEVER** collect a form field the privacy policy does not mention.
 - **NEVER** use a raw `<img>` for a local asset, or a generic stock photo — placeholders until the shoot.
 - **NEVER** guess deep-link identifiers (Team ID, fingerprints, paths) — get them from the mobile project.
-- **NEVER** commit a secret — Cloudflare Pages environment variables only.
+- **NEVER** commit a secret — Wrangler secrets (production) / `.dev.vars` (local) only.
 - **NEVER** redraw, recolor or add effects to the Mboa logo — official brand-kit SVGs only.
 - **NEVER** commit directly to `main` or `develop`.

@@ -1,0 +1,44 @@
+---
+import type { HTMLAttributes } from "astro/types";
+import BrandPattern from "../brand/BrandPattern.astro";
+import Container from "./Container.astro";
+
+/**
+ * Page section with a background tone. Dark tones are brand surfaces (forest),
+ * the only places the brand texture may appear (Doc 05 §5.3).
+ */
+type Props = HTMLAttributes<"section"> & {
+  tone?: "white" | "warm" | "pale" | "forest" | "forest-dark";
+  pattern?: boolean;
+  spacing?: "default" | "tight" | "none";
+};
+
+const { tone = "white", pattern = false, spacing = "default", class: className = "", ...rest } = Astro.props;
+
+const tones = {
+  white: "bg-white text-ink",
+  warm: "bg-warm-white text-ink",
+  pale: "bg-forest-pale text-ink",
+  forest: "bg-forest text-white",
+  "forest-dark": "bg-forest-dark text-white",
+};
+
+const spacings = {
+  default: "py-16 md:py-24",
+  tight: "py-10 md:py-14",
+  none: "",
+};
+
+const isBrandSurface = tone === "forest" || tone === "forest-dark";
+---
+
+<section
+  class:list={["relative isolate overflow-hidden", tones[tone], spacings[spacing], className]}
+  data-tone={tone}
+  {...rest}
+>
+  {pattern && isBrandSurface && <BrandPattern />}
+  <Container>
+    <slot />
+  </Container>
+</section>

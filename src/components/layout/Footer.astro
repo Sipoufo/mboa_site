@@ -1,0 +1,136 @@
+---
+import type { Locale } from "@/i18n/locales";
+import { localizedPath, t } from "@/i18n/utils";
+import { footerNavColumns } from "@/lib/navigation";
+import { settings, socialLinks, whatsappUrl } from "@/lib/settings";
+import BrandPattern from "../brand/BrandPattern.astro";
+import Logo from "../brand/Logo.astro";
+import Container from "../ui/Container.astro";
+import Icon from "../ui/Icon.astro";
+
+/** Dark brand footer (forest-dark + texture), modelled on the layout reference. */
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const columns = footerNavColumns();
+const socials = socialLinks();
+const { email, whatsapp, phone } = settings.contact;
+const hasContact = Boolean(email || whatsapp || phone);
+const year = new Date().getFullYear();
+---
+
+<footer class="relative isolate overflow-hidden bg-forest-dark text-white">
+  <BrandPattern opacity={0.06} />
+  <Logo
+    variant="monogram"
+    color="white"
+    height={420}
+    class="pointer-events-none absolute -right-16 -bottom-24 -z-10 hidden opacity-[0.05] lg:block"
+  />
+
+  <Container class="py-16 md:py-20">
+    <div class="grid gap-12 lg:grid-cols-[1.3fr_2fr]">
+      <div class="max-w-sm">
+        <Logo color="white" height={44} />
+        <p class="mt-6 text-lead text-white/80">{t(locale, "footer.pitch")}</p>
+        <p class="mt-4 font-display text-lg font-semibold text-forest-pale">{t(locale, "footer.tagline")}</p>
+
+        {socials.length > 0 && (
+          <div class="mt-8">
+            <p class="mb-3 text-xs font-semibold tracking-wide text-white/60 uppercase">{t(locale, "footer.follow")}</p>
+            <ul class="flex flex-wrap gap-2">
+              {socials.map((social) => (
+                <li>
+                  <a
+                    href={social.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-flex h-9 items-center gap-1.5 rounded-pill bg-white/10 px-3 text-sm font-medium transition-colors hover:bg-white/20"
+                  >
+                    {social.label}
+                    <Icon name="arrow-up-right" size={16} />
+                    <span class="sr-only">{t(locale, "a11y.newTab")}</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+      </div>
+
+      <div class="grid grid-cols-2 gap-10 sm:grid-cols-3">
+        {columns.length > 0 && (
+          <nav aria-label={t(locale, "a11y.footerNav")} class="contents">
+            {columns.map(({ column, items }) => (
+              <div>
+                <h2 class="font-sans text-xs font-semibold tracking-wide text-white/60 uppercase">
+                  {t(locale, `footer.${column}`)}
+                </h2>
+                <ul class="mt-4 flex flex-col gap-3 text-sm">
+                  {items.map((key) => (
+                    <li>
+                      <a href={localizedPath(key, locale)} class="text-white/85 transition-colors hover:text-white">
+                        {t(locale, `nav.${key}`)}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </nav>
+        )}
+
+        {hasContact && (
+          <div>
+            <h2 class="font-sans text-xs font-semibold tracking-wide text-white/60 uppercase">
+              {t(locale, "footer.colContact")}
+            </h2>
+            <ul class="mt-4 flex flex-col gap-3 text-sm">
+              {email && (
+                <li>
+                  <a href={`mailto:${email}`} class="inline-flex items-center gap-2 text-white/85 hover:text-white">
+                    <Icon name="mail" size={16} />
+                    {email}
+                  </a>
+                </li>
+              )}
+              {whatsapp && (
+                <li>
+                  <a
+                    href={whatsappUrl(whatsapp)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center gap-2 text-white/85 hover:text-white"
+                  >
+                    <Icon name="message-circle" size={16} />
+                    WhatsApp
+                    <span class="sr-only">{t(locale, "a11y.newTab")}</span>
+                  </a>
+                </li>
+              )}
+              {phone && (
+                <li>
+                  <a
+                    href={`tel:${phone.replace(/\s/g, "")}`}
+                    class="inline-flex items-center gap-2 text-white/85 hover:text-white"
+                  >
+                    <Icon name="phone" size={16} />
+                    {phone}
+                  </a>
+                </li>
+              )}
+            </ul>
+          </div>
+        )}
+      </div>
+    </div>
+
+    <div class="mt-14 border-t border-white/15 pt-6 text-xs text-white/60">
+      <p>
+        © {year} {settings.legal.companyName || "Mboa"}. {t(locale, "footer.rights")}
+      </p>
+    </div>
+  </Container>
+</footer>

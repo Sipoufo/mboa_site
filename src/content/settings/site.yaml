@@ -1,0 +1,40 @@
+# ------------------------------------------------------------------
+# Founder-editable settings (CLAUDE.md › Founder-Editable Settings).
+# Change a value, commit, deploy — no code to touch.
+# An empty optional value hides its element on the site.
+# An empty legal value shows "[à compléter]" and warns at build time.
+# ------------------------------------------------------------------
+
+launch:
+  # Month announced for the MVP, format YYYY-MM.
+  mvpDate: "2026-12"
+  # true → App Store / Google Play buttons replace the waitlist call to action.
+  appsLive: false
+
+stores:
+  appStore: ""
+  playStore: ""
+
+legal:
+  companyName: "MBOA SAS"
+  rccm: ""
+  address: ""
+  privacyEmail: ""
+  supportEmail: ""
+
+contact:
+  email: ""
+  # International format, e.g. "+237 6XX XXX XXX"
+  whatsapp: ""
+  phone: ""
+
+socials:
+  instagram: ""
+  tiktok: ""
+  facebook: ""
+  linkedin: ""
+
+waitlist:
+  showCounter: true
+  # The public counter only appears above this number of sign-ups.
+  counterFloor: 50

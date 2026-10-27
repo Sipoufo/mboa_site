@@ -1,0 +1,17 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "mboa-site",
+  "compatibility_date": "2026-10-01",
+  // Public, non-secret values. Secrets (TURNSTILE_SECRET_KEY, BREVO_API_KEY…) are set with
+  // `npx wrangler secret put <KEY>` — never here. Local secrets go in .dev.vars.
+  "assets": {
+    // Unknown URLs get dist/client/404.html with a 404 status.
+    "not_found_handling": "404-page",
+  },
+  "vars": {
+    "PUBLIC_SITE_URL": "https://mboa.cm",
+  },
+  "observability": {
+    "enabled": true,
+  },
+}

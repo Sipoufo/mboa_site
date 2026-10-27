@@ -1,0 +1,36 @@
+---
+/**
+ * Brand texture — a field of "M" monograms drawn from the logo polygon (Doc 05 §5.3).
+ * Only on forest surfaces, 8 % by default (≈ 6 % behind text). Never on white or a photo.
+ */
+interface Props {
+  opacity?: number;
+  /** Monogram width in px. */
+  scale?: number;
+  class?: string;
+}
+
+const { opacity = 0.08, scale = 36, class: className = "" } = Astro.props;
+
+// Same polygon as src/assets/brand/mboa-monogramme-*.svg (viewBox 0 -2 104 102).
+const MONOGRAM = "M0 100L0 28L33 -2L52 60L71 -2L104 28L104 100L84 100L84 20.42L59.61 100L44.39 100L20 20.42L20 100Z";
+
+const id = `mboa-pattern-${Math.random().toString(36).slice(2, 9)}`;
+const tile = scale * 3;
+const ratio = scale / 104;
+---
+
+<svg
+  class:list={["pointer-events-none absolute inset-0 -z-10 h-full w-full text-white", className]}
+  style={`opacity: ${opacity}`}
+  aria-hidden="true"
+  focusable="false"
+>
+  <defs>
+    <pattern id={id} width={tile} height={tile} patternUnits="userSpaceOnUse">
+      <path d={MONOGRAM} fill="currentColor" transform={`translate(${scale * 0.4} ${scale * 0.4}) scale(${ratio})`} />
+      <path d={MONOGRAM} fill="currentColor" transform={`translate(${scale * 1.9} ${scale * 1.9}) scale(${ratio})`} />
+    </pattern>
+  </defs>
+  <rect width="100%" height="100%" fill={`url(#${id})`} />
+</svg>

@@ -1,0 +1,85 @@
+{
+  "meta": {
+    "siteName": "Mboa",
+    "titleSuffix": "Mboa",
+    "defaultTitle": "Mboa — L'immobilier camerounais, autrement.",
+    "defaultDescription": "Trouvez, visitez et signez votre logement à Douala et Yaoundé, le tout en ligne. Annonces vérifiées, visites avec un agent certifié, Contrat Mboa signé en ligne.",
+    "ogLocale": "fr_FR"
+  },
+  "a11y": {
+    "skipToContent": "Aller au contenu",
+    "openMenu": "Ouvrir le menu",
+    "closeMenu": "Fermer le menu",
+    "mainNav": "Navigation principale",
+    "footerNav": "Navigation de pied de page",
+    "homeLink": "Mboa — accueil",
+    "languageSwitcher": "Langue du site",
+    "newTab": "(s'ouvre dans un nouvel onglet)"
+  },
+  "nav": {
+    "home": "Accueil",
+    "project": "Le projet",
+    "market": "Le marché",
+    "audiences": "Pour qui",
+    "owners": "Propriétaires",
+    "agents": "Devenir agent",
+    "apps": "Les applications",
+    "appMboa": "App Mboa",
+    "appMboaPro": "App Mboa Pro",
+    "trust": "Confiance",
+    "pricing": "Tarifs",
+    "roadmap": "Feuille de route",
+    "vision": "Vision",
+    "about": "À propos",
+    "investors": "Investisseurs",
+    "news": "Actualités",
+    "press": "Presse",
+    "faq": "FAQ",
+    "waitlist": "Liste d'attente",
+    "contact": "Contact",
+    "legalNotice": "Mentions légales",
+    "terms": "Conditions d'utilisation",
+    "privacy": "Confidentialité",
+    "cancellation": "Annulation"
+  },
+  "topbar": {
+    "launch": "Lancement du MVP : {date}",
+    "cta": "Rejoignez la liste d'attente"
+  },
+  "cta": {
+    "joinWaitlist": "Rejoindre la liste d'attente",
+    "discover": "Découvrir le projet",
+    "backHome": "Retour à l'accueil"
+  },
+  "common": {
+    "comingSoon": "Bientôt",
+    "subjectToChange": "Susceptibles d'évoluer",
+    "toComplete": "[à compléter]"
+  },
+  "language": {
+    "fr": "Français",
+    "en": "English"
+  },
+  "footer": {
+    "tagline": "Chez toi, autrement.",
+    "pitch": "Trouvez, visitez et signez votre logement à Douala et Yaoundé, le tout en ligne.",
+    "colDiscover": "Découvrir",
+    "colJoin": "Nous rejoindre",
+    "colLegal": "Informations légales",
+    "colContact": "Contact",
+    "rights": "Tous droits réservés.",
+    "follow": "Suivez Mboa"
+  },
+  "home": {
+    "title": "Mboa — L'immobilier camerounais, autrement.",
+    "description": "Trouvez, visitez et signez votre logement à Douala et Yaoundé, le tout en ligne. Annonces vérifiées, visites avec un agent certifié, Contrat Mboa signé en ligne.",
+    "eyebrow": "Lancement du MVP : {date}",
+    "heading": "Trouver un chez‑soi ne devrait pas être une épreuve.",
+    "lead": "Mboa met en relation locataires et propriétaires vérifiés, avec des visites accompagnées par un agent certifié et un contrat signé en ligne."
+  },
+  "notFound": {
+    "title": "Page introuvable",
+    "heading": "Cette page n'existe pas — ou plus.",
+    "lead": "Le lien est peut-être erroné. Revenez à l'accueil pour découvrir Mboa."
+  }
+}

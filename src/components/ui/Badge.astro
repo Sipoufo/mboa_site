@@ -1,0 +1,27 @@
+---
+/** Pills — Doc 05 §6.4. */
+interface Props {
+  variant?: "verified" | "new" | "soon" | "neutral" | "on-dark";
+  class?: string;
+}
+
+const { variant = "neutral", class: className = "" } = Astro.props;
+
+const variants = {
+  verified: "bg-forest-pale text-forest",
+  new: "bg-coral-pale text-coral-dark",
+  soon: "bg-forest text-white",
+  neutral: "bg-gray-light text-gray-dark",
+  "on-dark": "bg-white/12 text-white ring-1 ring-white/20",
+};
+---
+
+<span
+  class:list={[
+    "inline-flex items-center gap-1.5 rounded-pill px-2.5 py-1 text-xs font-medium",
+    variants[variant],
+    className,
+  ]}
+>
+  <slot />
+</span>

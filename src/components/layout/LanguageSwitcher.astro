@@ -1,0 +1,49 @@
+---
+import { locales, type Locale } from "@/i18n/locales";
+import type { RouteKey } from "@/i18n/routes";
+import { localizedPath, t } from "@/i18n/utils";
+
+/** Links the current page to its counterpart in the other locale — never back to home. */
+interface Props {
+  locale: Locale;
+  routeKey: RouteKey;
+  tone?: "light" | "dark";
+  class?: string;
+}
+
+const { locale, routeKey, tone = "light", class: className = "" } = Astro.props;
+---
+
+<nav aria-label={t(locale, "a11y.languageSwitcher")} class={className}>
+  <ul class="flex items-center gap-1 text-sm font-semibold">
+    {locales.map((target) => (
+      <li>
+        {target === locale ? (
+          <span
+            aria-current="true"
+            class:list={[
+              "inline-flex h-8 min-w-8 items-center justify-center rounded-pill px-2 uppercase",
+              tone === "dark" ? "bg-white/15 text-white" : "bg-forest-pale text-forest",
+            ]}
+          >
+            <span class="sr-only">{t(locale, `language.${target}`)}</span>
+            <span aria-hidden="true">{target}</span>
+          </span>
+        ) : (
+          <a
+            href={localizedPath(routeKey, target)}
+            hreflang={target}
+            lang={target}
+            class:list={[
+              "inline-flex h-8 min-w-8 items-center justify-center rounded-pill px-2 uppercase transition-colors",
+              tone === "dark" ? "text-white/80 hover:text-white" : "text-gray-dark hover:text-forest",
+            ]}
+          >
+            <span class="sr-only">{t(target, `language.${target}`)}</span>
+            <span aria-hidden="true">{target}</span>
+          </a>
+        )}
+      </li>
+    ))}
+  </ul>
+</nav>

@@ -1,0 +1,45 @@
+---
+import DecorDiscs from "@/components/brand/DecorDiscs.astro";
+import Badge from "@/components/ui/Badge.astro";
+import Button from "@/components/ui/Button.astro";
+import Container from "@/components/ui/Container.astro";
+import Icon from "@/components/ui/Icon.astro";
+import PhoneMockup from "@/components/ui/PhoneMockup.astro";
+import type { Locale } from "@/i18n/locales";
+import { formatMonth, localizedPath, t } from "@/i18n/utils";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { settings } from "@/lib/settings";
+
+/**
+ * Home page — skeleton version. The full page (sections from the layout reference)
+ * is built in feature/home.
+ */
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const launchDate = formatMonth(settings.launch.mvpDate, locale);
+---
+
+<BaseLayout locale={locale} routeKey="home" title={t(locale, "home.title")} description={t(locale, "home.description")}>
+  <section class="relative isolate overflow-hidden">
+    <DecorDiscs />
+    <Container class="grid items-center gap-12 py-16 md:py-24 lg:grid-cols-[1.2fr_1fr]">
+      <div>
+        <Badge variant="verified">
+          <Icon name="calendar" size={14} />
+          {t(locale, "home.eyebrow", { date: launchDate })}
+        </Badge>
+        <h1 class="mt-6 text-display">{t(locale, "home.heading")}</h1>
+        <p class="mt-6 max-w-xl text-lead text-gray-dark">{t(locale, "home.lead")}</p>
+        <div class="mt-10 flex flex-wrap gap-3">
+          <Button href={localizedPath("waitlist", locale)} size="lg">
+            {t(locale, "cta.joinWaitlist")}
+          </Button>
+        </div>
+      </div>
+      <PhoneMockup alt="Mboa" priority />
+    </Container>
+  </section>
+</BaseLayout>

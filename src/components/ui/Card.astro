@@ -1,0 +1,23 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+/** Card — Doc 05 §6.2: white, 16px radius, soft shadow. */
+type Props = HTMLAttributes<"div"> & {
+  as?: "div" | "article" | "li";
+  interactive?: boolean;
+};
+
+const { as: Tag = "div", interactive = false, class: className = "", ...rest } = Astro.props;
+---
+
+<Tag
+  class:list={[
+    "relative overflow-hidden rounded-card bg-white shadow-card",
+    interactive &&
+      "transition-[transform,box-shadow] duration-500 ease-out-soft hover:-translate-y-1 hover:shadow-lift",
+    className,
+  ]}
+  {...rest}
+>
+  <slot />
+</Tag>
