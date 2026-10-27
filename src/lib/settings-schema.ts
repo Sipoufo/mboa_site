@@ -19,6 +19,7 @@ export const settingsSchema = z.object({
     address: optionalText,
     privacyEmail: optionalEmail,
     supportEmail: optionalEmail,
+    publicationDirector: optionalText,
   }),
   contact: z.object({
     email: optionalEmail,

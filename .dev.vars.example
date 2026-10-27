@@ -1,6 +1,7 @@
-# Copy to .dev.vars for local development (never commit .dev.vars).
-# Turnstile test keys from Cloudflare docs: they always pass in dev.
-PUBLIC_TURNSTILE_SITE_KEY=1x00000000000000000000AA
+# Worker secrets for local development (copy to .dev.vars — never commit it).
+# Production: `npx wrangler secret put <KEY>` for each of these.
+
+# Turnstile test secret from Cloudflare docs: always passes. Leave empty to skip the check in dev.
 TURNSTILE_SECRET_KEY=1x0000000000000000000000000000000AA
 
 # Brevo — leave empty in dev to simulate submissions.
@@ -8,6 +9,7 @@ BREVO_API_KEY=
 BREVO_LIST_WAITLIST=
 BREVO_LIST_PIONEERS=
 BREVO_LIST_AGENTS=
+# Optional double opt-in email template id. Empty = contacts join the list directly.
+BREVO_DOI_TEMPLATE_ID=
 
 CONTACT_INBOX=
-PUBLIC_CF_ANALYTICS_TOKEN=

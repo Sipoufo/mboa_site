@@ -81,5 +81,120 @@
     "title": "Page introuvable",
     "heading": "Cette page n'existe pas — ou plus.",
     "lead": "Le lien est peut-être erroné. Revenez à l'accueil pour découvrir Mboa."
+  },
+  "waitlist": {
+    "title": "Liste d'attente",
+    "description": "Rejoignez la liste d'attente Mboa et soyez prévenu dès le lancement du MVP, prévu en {date}, à Douala et Yaoundé.",
+    "eyebrow": "Liste d'attente",
+    "heading": "Soyez parmi les premiers",
+    "highlight": "à découvrir Mboa.",
+    "lead": "Le MVP de Mboa arrive en {date}. Inscrivez-vous : nous vous prévenons dès l'ouverture, à Douala et Yaoundé.",
+    "counter": "{count} personnes ont déjà rejoint la liste d'attente.",
+    "points": {
+      "quick": "Deux minutes, sans engagement",
+      "unsubscribe": "Désinscription à tout moment",
+      "noResale": "Vos données ne sont jamais revendues"
+    },
+    "formTitle": "Je rejoins la liste",
+    "form": {
+      "firstName": "Prénom",
+      "email": "Email",
+      "whatsapp": "Numéro WhatsApp",
+      "contactHint": "Comment vous prévenir ? Indiquez au moins un email ou un numéro WhatsApp.",
+      "whatsappHint": "Numéro camerounais sans indicatif accepté (ex. 6 99 00 00 00).",
+      "city": "Ville",
+      "profile": "Vous êtes",
+      "motivation": "Qu'est-ce qui vous ferait utiliser Mboa ?",
+      "optional": "facultatif",
+      "choose": "Choisir…",
+      "consentBefore": "J'accepte que Mboa utilise ces informations pour me prévenir du lancement et me tenir informé du projet, conformément à la",
+      "consentLink": "politique de confidentialité",
+      "consentAfter": ".",
+      "submit": "Rejoindre la liste d'attente",
+      "submitting": "Envoi en cours…",
+      "honeypot": "Ne pas remplir ce champ"
+    },
+    "cities": {
+      "douala": "Douala",
+      "yaounde": "Yaoundé",
+      "kribi": "Kribi",
+      "bafoussam": "Bafoussam",
+      "other": "Autre ville"
+    },
+    "profiles": {
+      "tenant": "Locataire, à la recherche d'un logement",
+      "owner": "Propriétaire",
+      "agency": "Agence immobilière",
+      "agent": "Futur agent de visite",
+      "other": "Autre"
+    },
+    "errors": {
+      "required": "Ce champ est obligatoire.",
+      "firstName": "Indiquez votre prénom (2 caractères minimum).",
+      "email": "Cette adresse email ne semble pas valide.",
+      "invalidPhone": "Ce numéro ne semble pas valide. Exemple : +237 6 99 00 00 00.",
+      "contactRequired": "Indiquez au moins un email ou un numéro WhatsApp.",
+      "consent": "Votre accord est nécessaire pour vous inscrire.",
+      "captcha": "La vérification anti-robot a échoué. Rechargez la page et réessayez.",
+      "unavailable": "L'inscription est momentanément indisponible. Réessayez dans quelques minutes.",
+      "provider": "Votre inscription n'a pas pu être enregistrée. Réessayez dans quelques minutes.",
+      "network": "Connexion perdue. Vérifiez votre réseau et réessayez.",
+      "summary": "Certains champs sont à corriger."
+    },
+    "success": {
+      "title": "C'est noté !",
+      "titleNamed": "C'est noté, {name} !",
+      "subscribed": "Vous êtes sur la liste d'attente. Nous vous prévenons dès le lancement de Mboa.",
+      "confirmation": "Dernière étape : confirmez votre inscription grâce au lien que nous venons de vous envoyer par email.",
+      "confirmed": "Votre inscription est confirmée. Nous vous prévenons dès le lancement de Mboa.",
+      "simulated": "Inscription simulée (environnement de développement : Brevo n'est pas configuré).",
+      "again": "Inscrire une autre personne"
+    },
+    "next": {
+      "eyebrow": "Et ensuite ?",
+      "heading": "Ce qui se passe",
+      "highlight": "après votre inscription",
+      "step1Title": "Vous vous inscrivez",
+      "step1Text": "Deux minutes suffisent. Vous choisissez comment être prévenu : email ou WhatsApp.",
+      "step2Title": "Nous vous tenons informé",
+      "step2Text": "Vous suivez l'avancement du projet et pouvez nous dire ce qui compte pour vous.",
+      "step3Title": "Vous êtes prévenu du lancement",
+      "step3Text": "Dès l'ouverture du MVP en {date}, vous êtes parmi les premiers informés."
+    },
+    "pros": {
+      "title": "Propriétaire, agence ou agent ?",
+      "text": "Choisissez votre profil dans le formulaire. Des formulaires dédiés aux propriétaires et aux agents arrivent bientôt."
+    },
+    "faq": {
+      "heading": "Questions fréquentes",
+      "q1": "Quand l'application sera-t-elle disponible ?",
+      "a1": "Le MVP de Mboa est prévu pour {date}. Les inscrits sur la liste d'attente sont prévenus en premier.",
+      "q2": "Dans quelles villes ?",
+      "a2": "Le lancement commence à Douala et Yaoundé.",
+      "q3": "Sur quels téléphones ?",
+      "a3": "Mboa est une application mobile pour iOS et Android.",
+      "q4": "Que faites-vous de mes données ?",
+      "a4": "Elles servent uniquement à vous informer du lancement et de l'avancement du projet. Elles ne sont jamais revendues. Tous les détails sont dans notre politique de confidentialité.",
+      "q5": "Puis-je me désinscrire ?",
+      "a5": "Oui, à tout moment : via le lien présent dans chaque email, ou en nous écrivant."
+    }
+  },
+  "legal": {
+    "updated": "Dernière mise à jour : {date}",
+    "draftNotice": "Version provisoire, en cours de validation.",
+    "identity": {
+      "heading": "Éditeur du site",
+      "company": "Société",
+      "rccm": "RCCM",
+      "address": "Siège social",
+      "privacyEmail": "Contact données personnelles",
+      "supportEmail": "Contact",
+      "director": "Directeur de la publication"
+    },
+    "host": {
+      "heading": "Hébergement",
+      "text": "Cloudflare, Inc. — 101 Townsend St, San Francisco, CA 94107, États-Unis — cloudflare.com"
+    },
+    "toc": "Sommaire"
   }
 }

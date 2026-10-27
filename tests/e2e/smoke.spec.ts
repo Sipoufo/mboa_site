@@ -4,6 +4,12 @@ import { expect, test } from "@playwright/test";
 const pages = [
   { path: "/", lang: "fr" },
   { path: "/en", lang: "en" },
+  { path: "/liste-d-attente", lang: "fr" },
+  { path: "/en/waitlist", lang: "en" },
+  { path: "/confidentialite", lang: "fr" },
+  { path: "/en/privacy", lang: "en" },
+  { path: "/mentions-legales", lang: "fr" },
+  { path: "/en/legal-notice", lang: "en" },
 ];
 
 for (const { path, lang } of pages) {

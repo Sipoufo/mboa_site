@@ -26,6 +26,8 @@
 
   --color-success: #22c55e;
   --color-error: #ef4444;
+  /* #EF4444 is only 3.8:1 on white — error *text* uses a darker red to meet WCAG AA (6.5:1). */
+  --color-error-text: #b91c1c;
   --color-warning: #f59e0b;
   --color-info: #3b82f6;
 
@@ -124,6 +126,44 @@
   font-size: 0.6875rem;
   line-height: 1rem;
   letter-spacing: 0.2px;
+}
+
+/* ------------------------------------------------------------------
+ * Long-form legal text rendered from Markdown.
+ * ------------------------------------------------------------------ */
+@layer components {
+  .legal-prose {
+    @apply text-base leading-relaxed text-ink;
+  }
+
+  .legal-prose h2 {
+    @apply mt-12 mb-4 text-h3 first:mt-0;
+  }
+
+  .legal-prose p,
+  .legal-prose ul {
+    @apply mb-4;
+  }
+
+  .legal-prose ul {
+    @apply list-disc space-y-1.5 pl-6 marker:text-forest;
+  }
+
+  .legal-prose a {
+    @apply font-medium text-forest underline underline-offset-2 hover:text-forest-light;
+  }
+
+  .legal-prose table {
+    @apply my-6 block w-full overflow-x-auto text-left text-sm md:table;
+  }
+
+  .legal-prose th {
+    @apply border-b-[1.5px] border-forest-pale px-3 py-2 font-semibold whitespace-nowrap text-ink;
+  }
+
+  .legal-prose td {
+    @apply border-b border-gray-light px-3 py-2.5 align-top text-gray-dark;
+  }
 }
 
 /* ------------------------------------------------------------------

@@ -81,5 +81,120 @@
     "title": "Page not found",
     "heading": "This page doesn't exist — or no longer does.",
     "lead": "The link may be broken. Head back home to discover Mboa."
+  },
+  "waitlist": {
+    "title": "Waitlist",
+    "description": "Join the Mboa waitlist and be the first to know when the MVP launches in {date}, in Douala and Yaoundé.",
+    "eyebrow": "Waitlist",
+    "heading": "Be among the first",
+    "highlight": "to discover Mboa.",
+    "lead": "Mboa's MVP launches in {date}. Sign up and we'll let you know as soon as it opens, in Douala and Yaoundé.",
+    "counter": "{count} people have already joined the waitlist.",
+    "points": {
+      "quick": "Two minutes, no commitment",
+      "unsubscribe": "Unsubscribe at any time",
+      "noResale": "Your data is never sold"
+    },
+    "formTitle": "Join the list",
+    "form": {
+      "firstName": "First name",
+      "email": "Email",
+      "whatsapp": "WhatsApp number",
+      "contactHint": "How should we reach you? Give at least an email or a WhatsApp number.",
+      "whatsappHint": "Cameroonian numbers without the country code are fine (e.g. 6 99 00 00 00).",
+      "city": "City",
+      "profile": "You are",
+      "motivation": "What would make you use Mboa?",
+      "optional": "optional",
+      "choose": "Choose…",
+      "consentBefore": "I agree that Mboa may use this information to tell me about the launch and keep me updated on the project, as described in the",
+      "consentLink": "privacy policy",
+      "consentAfter": ".",
+      "submit": "Join the waitlist",
+      "submitting": "Sending…",
+      "honeypot": "Leave this field empty"
+    },
+    "cities": {
+      "douala": "Douala",
+      "yaounde": "Yaoundé",
+      "kribi": "Kribi",
+      "bafoussam": "Bafoussam",
+      "other": "Another city"
+    },
+    "profiles": {
+      "tenant": "Tenant, looking for a home",
+      "owner": "Property owner",
+      "agency": "Real estate agency",
+      "agent": "Future visit agent",
+      "other": "Other"
+    },
+    "errors": {
+      "required": "This field is required.",
+      "firstName": "Enter your first name (at least 2 characters).",
+      "email": "This email address doesn't look valid.",
+      "invalidPhone": "This number doesn't look valid. Example: +237 6 99 00 00 00.",
+      "contactRequired": "Give at least an email or a WhatsApp number.",
+      "consent": "We need your agreement to sign you up.",
+      "captcha": "The anti-bot check failed. Reload the page and try again.",
+      "unavailable": "Sign-up is temporarily unavailable. Try again in a few minutes.",
+      "provider": "We couldn't save your sign-up. Try again in a few minutes.",
+      "network": "Lost connection. Check your network and try again.",
+      "summary": "Some fields need fixing."
+    },
+    "success": {
+      "title": "You're in!",
+      "titleNamed": "You're in, {name}!",
+      "subscribed": "You're on the waitlist. We'll let you know as soon as Mboa launches.",
+      "confirmation": "One last step: confirm your sign-up with the link we just emailed you.",
+      "confirmed": "Your sign-up is confirmed. We'll let you know as soon as Mboa launches.",
+      "simulated": "Simulated sign-up (development environment: Brevo is not configured).",
+      "again": "Sign up someone else"
+    },
+    "next": {
+      "eyebrow": "What's next?",
+      "heading": "What happens",
+      "highlight": "after you sign up",
+      "step1Title": "You sign up",
+      "step1Text": "It takes two minutes. You choose how we reach you: email or WhatsApp.",
+      "step2Title": "We keep you posted",
+      "step2Text": "You follow the project's progress and can tell us what matters to you.",
+      "step3Title": "You hear about the launch first",
+      "step3Text": "As soon as the MVP opens in {date}, you're among the first to know."
+    },
+    "pros": {
+      "title": "Owner, agency or agent?",
+      "text": "Pick your profile in the form. Dedicated forms for owners and agents are coming soon."
+    },
+    "faq": {
+      "heading": "Frequently asked questions",
+      "q1": "When will the app be available?",
+      "a1": "Mboa's MVP is planned for {date}. People on the waitlist hear about it first.",
+      "q2": "In which cities?",
+      "a2": "The launch starts in Douala and Yaoundé.",
+      "q3": "On which phones?",
+      "a3": "Mboa is a mobile app for iOS and Android.",
+      "q4": "What do you do with my data?",
+      "a4": "It is only used to tell you about the launch and the project's progress. It is never sold. Everything is explained in our privacy policy.",
+      "q5": "Can I unsubscribe?",
+      "a5": "Yes, at any time: through the link in every email, or by writing to us."
+    }
+  },
+  "legal": {
+    "updated": "Last updated: {date}",
+    "draftNotice": "Provisional version, pending validation.",
+    "identity": {
+      "heading": "Site publisher",
+      "company": "Company",
+      "rccm": "Trade register (RCCM)",
+      "address": "Registered office",
+      "privacyEmail": "Personal data contact",
+      "supportEmail": "Contact",
+      "director": "Publication director"
+    },
+    "host": {
+      "heading": "Hosting",
+      "text": "Cloudflare, Inc. — 101 Townsend St, San Francisco, CA 94107, United States — cloudflare.com"
+    },
+    "toc": "Contents"
   }
 }

@@ -1,0 +1,91 @@
+---
+import { getEntry, render } from "astro:content";
+import Badge from "@/components/ui/Badge.astro";
+import Container from "@/components/ui/Container.astro";
+import type { Locale } from "@/i18n/locales";
+import { localeTags } from "@/i18n/locales";
+import { t } from "@/i18n/utils";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { settings } from "@/lib/settings";
+
+/**
+ * Legal page: text from src/content/legal/{locale}/{slug}.md, company identity
+ * from settings/site.yaml — empty values show a visible "[à compléter]" marker.
+ */
+interface Props {
+  locale: Locale;
+  slug: "privacy" | "legal-notice";
+}
+
+const { locale, slug } = Astro.props;
+const entry = await getEntry("legal", `${locale}/${slug}`);
+if (!entry) throw new Error(`Missing legal page ${locale}/${slug}`);
+const { Content } = await render(entry);
+
+const routeKey = slug === "privacy" ? "privacy" : "legalNotice";
+const updated = new Intl.DateTimeFormat(localeTags[locale], { dateStyle: "long", timeZone: "UTC" }).format(
+  entry.data.updated,
+);
+const missing = t(locale, "common.toComplete");
+const { legal } = settings;
+
+const identity = [
+  { label: t(locale, "legal.identity.company"), value: legal.companyName },
+  { label: t(locale, "legal.identity.rccm"), value: legal.rccm },
+  { label: t(locale, "legal.identity.address"), value: legal.address },
+  { label: t(locale, "legal.identity.privacyEmail"), value: legal.privacyEmail, email: true },
+  ...(slug === "legal-notice"
+    ? [
+        { label: t(locale, "legal.identity.supportEmail"), value: legal.supportEmail, email: true },
+        { label: t(locale, "legal.identity.director"), value: legal.publicationDirector },
+      ]
+    : []),
+];
+---
+
+<BaseLayout locale={locale} routeKey={routeKey} title={entry.data.title} description={entry.data.description}>
+  <section class="bg-warm-white py-14 md:py-20">
+    <Container class="max-w-3xl">
+      {entry.data.draft && <Badge variant="new">{t(locale, "legal.draftNotice")}</Badge>}
+      <h1 class="mt-4 text-h1">{entry.data.title}</h1>
+      <p class="mt-3 text-sm text-gray-dark">{t(locale, "legal.updated", { date: updated })}</p>
+    </Container>
+  </section>
+
+  <Container class="max-w-3xl py-12 md:py-16">
+    <div class="rounded-card border border-gray-light p-6 md:p-8">
+      <h2 class="text-h3">{t(locale, "legal.identity.heading")}</h2>
+      <dl class="mt-4 grid gap-x-6 gap-y-3 text-sm sm:grid-cols-[minmax(0,14rem)_1fr]">
+        {identity.map(({ label, value, email }) => (
+          <>
+            <dt class="font-medium text-gray-dark">{label}</dt>
+            <dd class="text-ink">
+              {value ? (
+                email ? (
+                  <a href={`mailto:${value}`} class="text-forest underline underline-offset-2">
+                    {value}
+                  </a>
+                ) : (
+                  value
+                )
+              ) : (
+                <span class="font-medium text-coral-dark">{missing}</span>
+              )}
+            </dd>
+          </>
+        ))}
+      </dl>
+
+      {slug === "legal-notice" && (
+        <>
+          <h2 class="mt-8 text-h3">{t(locale, "legal.host.heading")}</h2>
+          <p class="mt-3 text-sm text-ink">{t(locale, "legal.host.text")}</p>
+        </>
+      )}
+    </div>
+
+    <article class="legal-prose mt-12">
+      <Content />
+    </article>
+  </Container>
+</BaseLayout>

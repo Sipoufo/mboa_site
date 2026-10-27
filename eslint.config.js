@@ -13,8 +13,10 @@ export default defineConfig(
   astro.configs.recommended,
   astro.configs["jsx-a11y-recommended"],
   {
+    // eslint-plugin-astro's jsx-a11y config already registers the plugin; only add its rules for React islands.
     files: ["**/*.{jsx,tsx}"],
-    ...jsxA11y.flatConfigs.recommended,
+    languageOptions: jsxA11y.flatConfigs.recommended.languageOptions,
+    rules: jsxA11y.flatConfigs.recommended.rules,
   },
   {
     files: ["*.config.{js,mjs,ts}", "scripts/**/*.{js,mjs}"],

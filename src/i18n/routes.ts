@@ -37,7 +37,7 @@ export type RouteKey = keyof typeof routes;
  * Pages that actually exist. Navigation only links to these, so the site never
  * points to an empty page. Add a key here in the same change that adds its pages.
  */
-export const liveRoutes: readonly RouteKey[] = ["home"];
+export const liveRoutes: readonly RouteKey[] = ["home", "waitlist", "privacy", "legalNotice"];
 
 export function isLive(key: RouteKey): boolean {
   return liveRoutes.includes(key);

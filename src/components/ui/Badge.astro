@@ -7,11 +7,13 @@ interface Props {
 
 const { variant = "neutral", class: className = "" } = Astro.props;
 
+// Text colors are chosen for WCAG AA at 12px: coral-dark on coral-pale (4.2:1) and
+// gray-dark on gray-light (4.1:1) fall short, so those pills use ink text.
 const variants = {
   verified: "bg-forest-pale text-forest",
-  new: "bg-coral-pale text-coral-dark",
+  new: "bg-coral-pale text-ink ring-1 ring-coral-light",
   soon: "bg-forest text-white",
-  neutral: "bg-gray-light text-gray-dark",
+  neutral: "bg-gray-light text-ink",
   "on-dark": "bg-white/12 text-white ring-1 ring-white/20",
 };
 ---
