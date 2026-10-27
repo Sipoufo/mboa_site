@@ -1,0 +1,73 @@
+---
+import MboaPro from "@/assets/brand/mboa-pro-vert.svg";
+import Logo from "@/components/brand/Logo.astro";
+import Badge from "@/components/ui/Badge.astro";
+import Card from "@/components/ui/Card.astro";
+import Icon from "@/components/ui/Icon.astro";
+import Section from "@/components/ui/Section.astro";
+import SectionHeading from "@/components/ui/SectionHeading.astro";
+import type { Locale } from "@/i18n/locales";
+import { t, type TranslationKey } from "@/i18n/utils";
+
+/**
+ * The three apps (layout reference: category grid). Sources: Doc 06 §1.5, Doc 10, Doc 16 art. 3.
+ * The management app (M28) is "coming soon" — no date, no terms (CLAUDE.md › Public vs Internal).
+ * Mboa Admin is never presented.
+ */
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+
+const apps = [
+  { key: "mboa", soon: false },
+  { key: "pro", soon: false },
+  { key: "gestion", soon: true },
+] as const;
+
+const point = (app: string, n: number) => t(locale, `home.apps.${app}P${n}` as TranslationKey);
+---
+
+<Section tone="warm" id="applications" class="scroll-mt-24">
+  <SectionHeading
+    eyebrow={t(locale, "home.apps.eyebrow")}
+    title={t(locale, "home.apps.heading")}
+    highlight={t(locale, "home.apps.highlight")}
+    description={t(locale, "home.apps.description")}
+  />
+
+  <ul class="mt-12 grid gap-6 md:grid-cols-3">
+    {apps.map(({ key, soon }, index) => (
+      <Card as="li" interactive class="flex flex-col" data-reveal style={`--reveal-delay: ${index * 120}ms`}>
+        <div class="relative flex h-36 items-center justify-center bg-forest-pale">
+          {key === "mboa" && <Logo height={44} />}
+          {key === "pro" && <MboaPro height={44} width={183} aria-hidden="true" />}
+          {key === "gestion" && (
+            <span class="flex items-center gap-3">
+              <Logo variant="monogram" height={40} />
+              <Icon name="building" size={32} class="text-forest" />
+            </span>
+          )}
+          {soon && (
+            <Badge variant="soon" class="absolute top-4 right-4">
+              {t(locale, "common.comingSoon")}
+            </Badge>
+          )}
+        </div>
+        <div class="flex flex-1 flex-col p-6">
+          <h3 class="text-h3">{t(locale, `home.apps.${key}Name`)}</h3>
+          <p class="mt-1 text-sm font-medium text-forest">{t(locale, `home.apps.${key}For`)}</p>
+          <ul class="mt-5 flex flex-col gap-3 text-sm text-gray-dark">
+            {[1, 2, 3, 4].map((n) => (
+              <li class="flex gap-3">
+                <Icon name="check" size={18} class="mt-0.5 text-forest" />
+                {point(key, n)}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </Card>
+    ))}
+  </ul>
+</Section>

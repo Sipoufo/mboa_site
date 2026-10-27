@@ -1,9 +1,9 @@
 ---
 import BrandPattern from "@/components/brand/BrandPattern.astro";
 import DecorDiscs from "@/components/brand/DecorDiscs.astro";
-import WaitlistCounter from "@/components/islands/WaitlistCounter.tsx";
 import WaitlistForm from "@/components/islands/WaitlistForm.tsx";
 import { waitlistCopy } from "@/components/islands/waitlist-copy";
+import WaitlistCount from "@/components/sections/WaitlistCount.astro";
 import Card from "@/components/ui/Card.astro";
 import Container from "@/components/ui/Container.astro";
 import Icon from "@/components/ui/Icon.astro";
@@ -75,7 +75,7 @@ const faq = ([1, 2, 3, 4, 5] as const).map((n) => ({
           ))}
         </ul>
         <div class="mt-8 min-h-10">
-          <WaitlistCounter client:idle template={t(locale, "waitlist.counter")} numberLocale={localeTags[locale]} />
+          <WaitlistCount template={t(locale, "waitlist.counter")} numberLocale={localeTags[locale]} />
         </div>
       </div>
 

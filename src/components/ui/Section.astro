@@ -37,7 +37,7 @@ const isBrandSurface = tone === "forest" || tone === "forest-dark";
   data-tone={tone}
   {...rest}
 >
-  {pattern && isBrandSurface && <BrandPattern />}
+  {pattern && isBrandSurface && <BrandPattern opacity={0.06} />}
   <Container>
     <slot />
   </Container>

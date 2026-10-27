@@ -1,0 +1,68 @@
+---
+import Badge from "@/components/ui/Badge.astro";
+import Icon from "@/components/ui/Icon.astro";
+import Section from "@/components/ui/Section.astro";
+import SectionHeading from "@/components/ui/SectionHeading.astro";
+import type { Locale } from "@/i18n/locales";
+import { formatMonth, t, type TranslationKey } from "@/i18n/utils";
+import type { IconName } from "@/lib/icons";
+import { settings } from "@/lib/settings";
+
+/**
+ * Roadmap (layout reference: big numbered list). Only the MVP carries a date (founder setting);
+ * delegated management is "coming soon", Phase 2 is a vision — never a date (CLAUDE.md › Content Rules).
+ */
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const date = formatMonth(settings.launch.mvpDate, locale);
+
+const steps: { n: number; icon: IconName; current: boolean }[] = [
+  { n: 1, icon: "rocket", current: true },
+  { n: 2, icon: "building", current: false },
+  { n: 3, icon: "telescope", current: false },
+];
+
+const copy = (n: number, field: string) => t(locale, `home.roadmap.s${n}${field}` as TranslationKey, { date });
+---
+
+<Section tone="warm">
+  <div class="grid gap-12 lg:grid-cols-[1fr_1.5fr] lg:gap-20">
+    <SectionHeading
+      class="lg:sticky lg:top-32 lg:self-start"
+      eyebrow={t(locale, "home.roadmap.eyebrow")}
+      title={t(locale, "home.roadmap.heading")}
+      highlight={t(locale, "home.roadmap.highlight")}
+      description={t(locale, "home.roadmap.description")}
+    />
+
+    <ol class="relative flex flex-col gap-6 before:absolute before:top-4 before:bottom-4 before:left-[1.9rem] before:w-px before:bg-forest/20">
+      {steps.map(({ n, icon, current }) => (
+        <li class="relative flex gap-5" data-reveal style={`--reveal-delay: ${(n - 1) * 120}ms`}>
+          <span
+            class:list={[
+              "relative z-10 flex size-[3.8rem] shrink-0 items-center justify-center rounded-full ring-4 ring-warm-white",
+              current ? "bg-forest text-white" : "bg-white text-forest shadow-card",
+            ]}
+          >
+            <Icon name={icon} size={26} />
+          </span>
+          <div class="flex-1 rounded-card bg-white p-6 shadow-card">
+            <div class="flex flex-wrap items-center gap-3">
+              <span class="font-display text-3xl font-extrabold text-forest-pale" aria-hidden="true">
+                {String(n).padStart(2, "0")}
+              </span>
+              <Badge variant={current ? "verified" : "neutral"} class="capitalize">
+                {copy(n, "Status")}
+              </Badge>
+            </div>
+            <h3 class="mt-3 text-h3">{copy(n, "Title")}</h3>
+            <p class="mt-2 text-gray-dark">{copy(n, "Text")}</p>
+          </div>
+        </li>
+      ))}
+    </ol>
+  </div>
+</Section>

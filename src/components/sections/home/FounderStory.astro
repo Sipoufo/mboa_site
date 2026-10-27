@@ -1,0 +1,41 @@
+---
+import Icon from "@/components/ui/Icon.astro";
+import PhotoPlaceholder from "@/components/ui/PhotoPlaceholder.astro";
+import Section from "@/components/ui/Section.astro";
+import type { Locale } from "@/i18n/locales";
+import { t } from "@/i18n/utils";
+
+/**
+ * Founder story — replaces the layout reference's client-logo grid with true content.
+ * Quote: Doc 06 §1.4, short version (verbatim in FR).
+ */
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+---
+
+<Section tone="white">
+  <div class="grid items-center gap-12 md:grid-cols-[minmax(0,20rem)_1fr] lg:gap-20">
+    <PhotoPlaceholder shot={t(locale, "home.founder.photoAlt")} icon="users" ratio="3/4" class="max-w-xs" />
+
+    <figure data-reveal>
+      <p class="mb-6 inline-flex items-center gap-2 text-xs font-semibold tracking-wide text-forest uppercase">
+        <span class="size-1.5 rounded-full bg-forest" aria-hidden="true"></span>
+        {t(locale, "home.founder.eyebrow")}
+      </p>
+      <Icon name="quote" size={40} class="text-forest-pale" />
+      <blockquote class="mt-4 font-display text-xl leading-relaxed font-semibold text-ink md:text-2xl">
+        <p>{t(locale, "home.founder.quote")}</p>
+      </blockquote>
+      <figcaption class="mt-8 flex items-center gap-4">
+        <span class="h-px w-10 bg-forest" aria-hidden="true"></span>
+        <span>
+          <span class="block font-semibold text-ink">{t(locale, "home.founder.name")}</span>
+          <span class="block text-sm text-gray-dark">{t(locale, "home.founder.role")}</span>
+        </span>
+      </figcaption>
+    </figure>
+  </div>
+</Section>

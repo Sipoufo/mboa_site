@@ -1,0 +1,127 @@
+---
+import DecorDiscs from "@/components/brand/DecorDiscs.astro";
+import WaitlistCount from "@/components/sections/WaitlistCount.astro";
+import Badge from "@/components/ui/Badge.astro";
+import Button from "@/components/ui/Button.astro";
+import Container from "@/components/ui/Container.astro";
+import Icon from "@/components/ui/Icon.astro";
+import PhoneMockup from "@/components/ui/PhoneMockup.astro";
+import { localeTags, type Locale } from "@/i18n/locales";
+import { formatMonth, localizedPath, t } from "@/i18n/utils";
+import { settings } from "@/lib/settings";
+
+/**
+ * Hero — layout reference: text left, collage of tiles with figures right.
+ * The figures are true facts only (launch date, target cities, apps) — Doc 01 §7, Doc 06 §1.5.
+ */
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const date = formatMonth(settings.launch.mvpDate, locale);
+---
+
+<section class="relative isolate overflow-hidden">
+  <DecorDiscs />
+  <Container class="grid items-center gap-14 pt-12 pb-20 md:pt-16 lg:grid-cols-[1.1fr_1fr] lg:pb-24">
+    <div class="hero-enter">
+      <div style="--i: 0">
+        <Badge variant="verified">
+          <Icon name="calendar" size={14} />
+          {t(locale, "home.hero.eyebrow", { date })}
+        </Badge>
+      </div>
+      <h1 class="mt-6 text-display">{t(locale, "home.hero.heading")}</h1>
+      <p class="mt-6 max-w-xl text-lead text-gray-dark" style="--i: 1">
+        {t(locale, "home.hero.lead")}
+      </p>
+      <div class="mt-10 flex flex-wrap items-center gap-3" style="--i: 2">
+        <Button href={localizedPath("waitlist", locale)} size="lg">
+          {t(locale, "cta.joinWaitlist")}
+        </Button>
+        <Button href="#applications" variant="outline" size="lg" icon={false}>
+          {t(locale, "home.hero.ctaSecondary")}
+        </Button>
+      </div>
+      <div class="mt-8" style="--i: 3">
+        <WaitlistCount template={t(locale, "home.hero.counter")} numberLocale={localeTags[locale]} />
+      </div>
+    </div>
+
+    <div class="relative mx-auto w-full max-w-md lg:max-w-none">
+      <PhoneMockup alt={t(locale, "home.hero.phoneAlt")} priority class="relative z-10" />
+
+      <div
+        class="hero-tile tile-float absolute top-6 -left-1 z-20 w-44 rounded-card bg-forest p-4 text-white shadow-lift sm:left-0 lg:-left-6"
+        style="--i: 3"
+      >
+        <p class="text-xs font-medium text-forest-pale">{t(locale, "home.hero.tileLaunch")}</p>
+        <p class="mt-1 font-display text-xl font-extrabold capitalize">{date}</p>
+      </div>
+
+      <div
+        class="hero-tile tile-float-slow absolute top-1/2 -right-1 z-20 w-48 rounded-card bg-white p-4 shadow-lift sm:right-0 lg:-right-4"
+        style="--i: 4"
+      >
+        <p class="flex items-baseline gap-2">
+          <span class="font-display text-4xl font-extrabold text-forest">4</span>
+          <span class="text-sm font-semibold text-ink">{t(locale, "home.hero.tileCities")}</span>
+        </p>
+        <p class="mt-1 text-xs text-gray-dark">{t(locale, "home.hero.tileCitiesList")}</p>
+      </div>
+
+      <div
+        class="hero-tile tile-float absolute bottom-10 -left-1 z-20 w-44 rounded-card bg-forest-pale p-4 shadow-card sm:left-2 lg:-left-2"
+        style="--i: 5"
+      >
+        <p class="flex items-baseline gap-2">
+          <span class="font-display text-4xl font-extrabold text-forest">3</span>
+          <span class="text-sm font-semibold text-ink">{t(locale, "home.hero.tileApps")}</span>
+        </p>
+        <p class="mt-1 text-xs text-forest-dark">{t(locale, "home.hero.tileAppsList")}</p>
+      </div>
+    </div>
+  </Container>
+</section>
+
+<style>
+  /* Staggered entrance. The h1 is not animated, so the LCP is never delayed. */
+  .hero-enter > :not(h1),
+  .hero-tile {
+    animation: hero-in 0.8s var(--ease-out-soft) both;
+    animation-delay: calc(var(--i, 0) * 110ms + 80ms);
+  }
+
+  .tile-float {
+    animation:
+      hero-in 0.8s var(--ease-out-soft) both calc(var(--i, 0) * 110ms + 80ms),
+      float 7s ease-in-out 1.2s infinite alternate;
+  }
+
+  .tile-float-slow {
+    animation:
+      hero-in 0.8s var(--ease-out-soft) both calc(var(--i, 0) * 110ms + 80ms),
+      float 9s ease-in-out 1.4s infinite alternate-reverse;
+  }
+
+  @keyframes hero-in {
+    from {
+      opacity: 0;
+      transform: translateY(18px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  @keyframes float {
+    from {
+      transform: translateY(0);
+    }
+    to {
+      transform: translateY(-10px);
+    }
+  }
+</style>

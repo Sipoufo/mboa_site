@@ -141,16 +141,15 @@ site-vitrine/
 │   ├── components/
 │   │   ├── ui/                   # Button, Badge, Card, Container, SectionHeading, Icon, PhotoPlaceholder…
 │   │   ├── layout/               # Header, Footer, MobileNav, LanguageSwitcher, SkipLink
-│   │   ├── sections/             # Hero, Problem, AppsShowcase, Audiences, Trust, Pricing,
-│   │   │                         # Roadmap, Countdown, Faq, Team, CtaBanner, WaitlistBlock…
+│   │   ├── sections/             # WaitlistCount (vanilla JS), home/ (Hero, AppsShowcase, TrustFeatures, Audiences,
+│   │   │                         # RoadmapTeaser, FounderStory, Values, FinalCta), later Pricing, Faq…
 │   │   ├── brand/                # BrandPattern (M monogram texture), DecorDiscs, Logo
 │   │   ├── views/                # One view per page, shared by the FR and EN route files (HomeView…)
 │   │   └── islands/              # React components — the ONLY place component JS lives
 │   │       ├── WaitlistForm.tsx
 │   │       ├── PioneerForm.tsx
 │   │       ├── AgentForm.tsx
-│   │       ├── ContactForm.tsx
-│   │       └── WaitlistCounter.tsx
+│   │       └── ContactForm.tsx
 │   ├── content/
 │   │   ├── settings/site.yaml    # FOUNDER-EDITABLE values (see below)
 │   │   ├── legal/{fr,en}/        # cgu, confidentialite, annulation, mentions-legales
@@ -337,7 +336,7 @@ Coral `#E8735A` reaches only ≈ 3.4:1 against white (and white on coral) — be
 | Coral text on white | `coral` only at large size (≥ 24px, or ≥ 18.66px bold — prices, big links); `coral-dark` otherwise | ✅ |
 | Icons, underlines, focus accents, decorative interactive shapes | `coral` | ≥ 3:1 ✅ (non-text) |
 
-Small pills follow the same rule: coral-dark on coral-pale (4.2:1) and gray-dark on gray-light (4.1:1) fail at 12px, so those badges use `ink` text.
+`gray-dark` text is only AA on `white` / `warm-white`; on `forest-pale` (4.3:1) use `forest-dark`. Small pills follow the same rule: coral-dark on coral-pale (4.2:1) and gray-dark on gray-light (4.1:1) fail at 12px, so those badges use `ink` text.
 
 Any new color pairing must be checked at WCAG 2.1 AA before use.
 

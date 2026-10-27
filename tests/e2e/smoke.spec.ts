@@ -30,6 +30,8 @@ for (const { path, lang } of pages) {
     });
 
     test("has no accessibility violations", async ({ page }) => {
+      // Audit the settled page: mid-animation text is semi-transparent and skews contrast checks.
+      await page.emulateMedia({ reducedMotion: "reduce" });
       await page.goto(path);
       const results = await new AxeBuilder({ page }).withTags(["wcag2a", "wcag2aa", "wcag21a", "wcag21aa"]).analyze();
       expect(results.violations.map((violation) => `${violation.id}: ${violation.help}`)).toEqual([]);
@@ -82,4 +84,19 @@ test.describe("reduced motion", () => {
     expect(hidden).toBe(0);
     await expect(page.locator("html")).not.toHaveClass(/js-reveal/);
   });
+});
+
+test("home audience cards open the waitlist with the profile preselected", async ({ page }) => {
+  await page.goto("/");
+  await page.getByRole("link", { name: "Je deviens agent" }).click();
+  await expect(page).toHaveURL(/\/liste-d-attente\?profil=agent$/);
+  await expect(page.getByLabel("Vous êtes")).toHaveValue("agent");
+});
+
+test("home ships no React runtime", async ({ page }) => {
+  const scripts: string[] = [];
+  page.on("request", (request) => request.resourceType() === "script" && scripts.push(request.url()));
+  await page.goto("/");
+  await page.waitForLoadState("networkidle");
+  expect(scripts.filter((url) => url.includes("/_astro/client") || url.includes("react"))).toEqual([]);
 });
