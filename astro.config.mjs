@@ -5,13 +5,16 @@ import react from "@astrojs/react";
 import sitemap from "@astrojs/sitemap";
 import tailwindcss from "@tailwindcss/vite";
 
-const site = process.env.PUBLIC_SITE_URL ?? "https://mboa.cm";
+const site = process.env.PUBLIC_SITE_URL ?? "https://mboacm.com";
 
 export default defineConfig({
   site,
   trailingSlash: "never",
   // "/en/index.astro" → "/en.html", served at "/en" (no trailing slash, no redirect).
   build: { format: "file" },
+  // No sessions: nothing on the site needs them, and leaving them on makes the adapter
+  // require a "SESSION" KV namespace on the Worker.
+  session: false,
   adapter: cloudflare({
     // Images are optimized once at build time — no runtime image binding needed.
     imageService: "compile",

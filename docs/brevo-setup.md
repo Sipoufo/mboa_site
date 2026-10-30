@@ -21,7 +21,7 @@ Tant que rien n'est configuré : en local, l'envoi est simulé ; en production, 
 
 ## 2. Cloudflare Turnstile (anti-robot)
 
-1. Tableau de bord Cloudflare → **Turnstile** → *Add widget*, domaine `mboa.cm` (et `localhost` pour les tests).
+1. Tableau de bord Cloudflare → **Turnstile** → *Add widget*, domaine `mboacm.com` (et `localhost` pour les tests).
 2. Mode : *Managed*.
 3. Noter la **Site Key** (publique) → `PUBLIC_TURNSTILE_SITE_KEY`
    et la **Secret Key** → `TURNSTILE_SECRET_KEY`.

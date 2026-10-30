@@ -18,13 +18,13 @@ const configured: FormsEnv = {
   TURNSTILE_SECRET_KEY: "secret",
   BREVO_API_KEY: "brevo-key",
   BREVO_LIST_WAITLIST: "7",
-  PUBLIC_SITE_URL: "https://mboa.cm",
+  PUBLIC_SITE_URL: "https://mboacm.com",
 };
 
 const silent = { warn: vi.fn(), error: vi.fn() };
 
 function post(body: unknown): Request {
-  return new Request("https://mboa.cm/api/waitlist", {
+  return new Request("https://mboacm.com/api/waitlist", {
     method: "POST",
     headers: { "content-type": "application/json" },
     body: typeof body === "string" ? body : JSON.stringify(body),
@@ -132,7 +132,7 @@ describe("handleWaitlist", () => {
     expect(doi?.body).toMatchObject({
       templateId: 3,
       includeListIds: [7],
-      redirectionUrl: "https://mboa.cm/en/waitlist?confirmed=1",
+      redirectionUrl: "https://mboacm.com/en/waitlist?confirmed=1",
     });
   });
 

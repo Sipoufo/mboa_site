@@ -297,7 +297,7 @@ The founder wants **rich animations** — they must stay cheap.
 ## Future (not in the first release)
 
 - **Keystatic CMS** for news, FAQ, team, settings — after the waitlist launch.
-- **Public listing pages from the API** (`api.mboa.cm`) for search engines — requires a public read endpoint on the API side and on-demand rendering with edge caching. Design it with the `api/` repo when the time comes.
+- **Public listing pages from the API** (`api.mboacm.com`) for search engines — requires a public read endpoint on the API side and on-demand rendering with edge caching. Design it with the `api/` repo when the time comes.
 
 ---
 
@@ -424,7 +424,7 @@ Any new color pairing must be checked at WCAG 2.1 AA before use.
 |-----|-----|--------|-------|
 | `dev` | `http://localhost:4321` | any | Local development (`npm run dev`) |
 | `preview` | Workers preview URL per branch (`*.workers.dev`) | `develop`, `feature/*`, `release/*` | Review before release — `noindex` |
-| `production` | `https://mboa.cm` (domain to verify / purchase) | `main` | Public site |
+| `production` | `https://mboacm.com` (+ `www` redirected to the apex) | `main` | Public site |
 
 Hosting: Cloudflare Workers, same Cloudflare account as R2. Plain values go in `wrangler.jsonc` `vars`; secrets via `npx wrangler secret put <KEY>`, read with `import { env } from "cloudflare:workers"` (`Astro.locals.runtime` no longer exists). Local secrets in `.dev.vars` (never committed — `.dev.vars.example` documents them):
 `PUBLIC_SITE_URL` · `PUBLIC_TURNSTILE_SITE_KEY` · `TURNSTILE_SECRET_KEY` · `BREVO_API_KEY` · `BREVO_LIST_WAITLIST` · `BREVO_LIST_PIONEERS` · `BREVO_LIST_AGENTS` · `CONTACT_INBOX` · `PUBLIC_CF_ANALYTICS_TOKEN` · `KEYSTATIC_GITHUB_CLIENT_ID` · `KEYSTATIC_GITHUB_CLIENT_SECRET` · `KEYSTATIC_SECRET`

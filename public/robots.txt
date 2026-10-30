@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://mboa.cm/sitemap-index.xml
+Sitemap: https://mboacm.com/sitemap-index.xml

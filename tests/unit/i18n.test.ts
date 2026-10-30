@@ -77,9 +77,9 @@ describe("routes", () => {
 
 describe("getLocale / formatMonth", () => {
   it("detects the locale from the URL", () => {
-    expect(getLocale(new URL("https://mboa.cm/en/apps"))).toBe("en");
-    expect(getLocale(new URL("https://mboa.cm/applications"))).toBe("fr");
-    expect(getLocale(new URL("https://mboa.cm/entreprise"))).toBe("fr");
+    expect(getLocale(new URL("https://mboacm.com/en/apps"))).toBe("en");
+    expect(getLocale(new URL("https://mboacm.com/applications"))).toBe("fr");
+    expect(getLocale(new URL("https://mboacm.com/entreprise"))).toBe("fr");
   });
 
   it("formats the MVP month", () => {

@@ -9,7 +9,7 @@
     "not_found_handling": "404-page",
   },
   "vars": {
-    "PUBLIC_SITE_URL": "https://mboa.cm",
+    "PUBLIC_SITE_URL": "https://mboacm.com",
   },
   "observability": {
     "enabled": true,
