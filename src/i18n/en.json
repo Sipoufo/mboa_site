@@ -1,0 +1,310 @@
+{
+  "meta": {
+    "siteName": "Mboa",
+    "titleSuffix": "Mboa",
+    "defaultTitle": "Mboa — Cameroonian real estate, differently.",
+    "defaultDescription": "Find, visit and sign for your home in Douala and Yaoundé, all online. Verified listings, visits with a certified agent, the Mboa Contract signed online.",
+    "ogLocale": "en_US"
+  },
+  "a11y": {
+    "skipToContent": "Skip to content",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "mainNav": "Main navigation",
+    "footerNav": "Footer navigation",
+    "homeLink": "Mboa — home",
+    "languageSwitcher": "Site language",
+    "newTab": "(opens in a new tab)"
+  },
+  "nav": {
+    "home": "Home",
+    "project": "The project",
+    "market": "The market",
+    "audiences": "Who it's for",
+    "owners": "Owners",
+    "agents": "Become an agent",
+    "apps": "The apps",
+    "appMboa": "Mboa app",
+    "appMboaPro": "Mboa Pro app",
+    "trust": "Trust",
+    "pricing": "Pricing",
+    "roadmap": "Roadmap",
+    "vision": "Vision",
+    "about": "About",
+    "investors": "Investors",
+    "news": "News",
+    "press": "Press",
+    "faq": "FAQ",
+    "waitlist": "Waitlist",
+    "contact": "Contact",
+    "legalNotice": "Legal notice",
+    "terms": "Terms of use",
+    "privacy": "Privacy",
+    "cancellation": "Cancellation"
+  },
+  "topbar": {
+    "launch": "MVP launch: {date}",
+    "cta": "Join the waitlist"
+  },
+  "cta": {
+    "joinWaitlist": "Join the waitlist",
+    "discover": "Discover the project",
+    "backHome": "Back to home"
+  },
+  "common": {
+    "comingSoon": "Coming soon",
+    "subjectToChange": "Subject to change",
+    "toComplete": "[to be completed]"
+  },
+  "language": {
+    "fr": "Français",
+    "en": "English"
+  },
+  "footer": {
+    "tagline": "Home, differently.",
+    "pitch": "Find, visit and sign for your home in Douala and Yaoundé, all online.",
+    "colDiscover": "Discover",
+    "colJoin": "Join us",
+    "colLegal": "Legal",
+    "colContact": "Contact",
+    "rights": "All rights reserved.",
+    "follow": "Follow Mboa"
+  },
+  "home": {
+    "title": "Mboa — Cameroonian real estate, differently.",
+    "description": "Find, visit and sign for your home in Douala and Yaoundé, all online. Verified listings, visits with a certified agent, the Mboa Contract signed online. MVP launch in {date}.",
+    "hero": {
+      "eyebrow": "MVP launch: {date}",
+      "heading": "Finding a home shouldn't feel like a fight.",
+      "lead": "Mboa connects tenants with verified landlords, with visits led by a certified agent and a contract signed online.",
+      "ctaSecondary": "Discover the apps",
+      "tileLaunch": "MVP launch",
+      "tileCities": "target cities",
+      "tileCitiesList": "Douala · Yaoundé · Kribi · Bafoussam",
+      "tileApps": "apps",
+      "tileAppsList": "Mboa · Mboa Pro · management",
+      "phoneAlt": "Preview of the Mboa app (screenshot coming soon)",
+      "counter": "{count} people on the waitlist"
+    },
+    "apps": {
+      "eyebrow": "The apps",
+      "heading": "Three apps,",
+      "highlight": "one goal: housing without the hassle.",
+      "description": "Everyone involved in a home gets their own tool: the person searching, the person renting out, and the owner who hands over their property.",
+      "mboaName": "Mboa app",
+      "mboaFor": "For tenants",
+      "mboaP1": "Search by neighbourhood, with filters and a map",
+      "mboaP2": "Scheduled visits with a certified agent",
+      "mboaP3": "Messaging with landlords",
+      "mboaP4": "The Mboa Contract, signed online",
+      "proName": "Mboa Pro app",
+      "proFor": "For owners, agencies and agents",
+      "proP1": "Listing publication and trust badges",
+      "proP2": "Tenant messages and applicants' Mboa Score",
+      "proP3": "Visits handled by certified agents",
+      "proP4": "Agent space: areas, availability, visit reports",
+      "gestionName": "The management app",
+      "gestionFor": "For owners who hand their property over to Mboa",
+      "gestionP1": "Rent tracking and reminders",
+      "gestionP2": "Maintenance and contractors",
+      "gestionP3": "Monthly report and decisions to approve",
+      "gestionP4": "A Mboa team dedicated to your property"
+    },
+    "trust": {
+      "eyebrow": "Trust, built in",
+      "heading": "Everything that was missing",
+      "highlight": "to rent with peace of mind.",
+      "description": "Mboa brings together in one app what the market doesn't guarantee today.",
+      "phoneAlt": "A property page in the Mboa app (screenshot coming soon)",
+      "f1Title": "Verified providers",
+      "f1Text": "Owners, agencies and agents verify their identity with Mboa.",
+      "f2Title": "Trust badges",
+      "f2Text": "Badges on every listing so you know who you're dealing with.",
+      "f3Title": "Accompanied visits",
+      "f3Text": "A certified Mboa agent shows you the property and writes a report.",
+      "f4Title": "Mboa Contract",
+      "f4Text": "A standard contract, signed online by both parties.",
+      "f5Title": "Mboa Score",
+      "f5Text": "A tenant reliability score that reassures landlords.",
+      "f6Title": "Built-in messaging",
+      "f6Text": "Talk to landlords directly in the app."
+    },
+    "audiences": {
+      "eyebrow": "Who it's for",
+      "heading": "Mboa is made",
+      "highlight": "for you.",
+      "tenantsTitle": "You're looking for a home",
+      "tenantsText": "Visit properties with a certified agent, sign your contract online, move in with peace of mind.",
+      "tenantsCta": "I'm looking for a home",
+      "ownersTitle": "You rent out a property",
+      "ownersText": "List your properties, get verified tenants and sign secure contracts — no paperwork, no middleman.",
+      "ownersCta": "I have a property",
+      "agentsTitle": "You want to become an agent",
+      "agentsText": "Become a certified Mboa agent and earn an income by running property visits in your neighbourhood.",
+      "agentsCta": "I want to be an agent"
+    },
+    "roadmap": {
+      "eyebrow": "Roadmap",
+      "heading": "Where is",
+      "highlight": "Mboa at?",
+      "description": "Mboa starts by connecting people, then goes further, step by step.",
+      "s1Status": "{date}",
+      "s1Title": "The MVP",
+      "s1Text": "The Mboa app and the Mboa Pro app, in Douala and Yaoundé.",
+      "s2Status": "Coming soon",
+      "s2Title": "Delegated management",
+      "s2Text": "Hand over the management of your property to a Mboa team: rent, maintenance, monthly report.",
+      "s3Status": "Vision",
+      "s3Title": "Mboa Coliving and Mboa Séjours",
+      "s3Text": "Living and short-stay spaces operated by Mboa, with the same standard everywhere."
+    },
+    "founder": {
+      "eyebrow": "Why Mboa",
+      "quote": "Mboa was born from a personal frustration. Looking for a home in Cameroon is an ordeal everyone has been through — scams, fake numbers, money handed over with no guarantee. I wanted to build what would have changed that experience. Not another app. A trust infrastructure for Cameroonian real estate.",
+      "name": "Yvan SIPOUFO",
+      "role": "Founder of Mboa",
+      "photoAlt": "Portrait of Yvan SIPOUFO, founder of Mboa (photo coming soon)"
+    },
+    "promise": {
+      "text": "“With Mboa, you know what you're getting before you even show up.”",
+      "signature": "Mboa — Home, differently."
+    },
+    "values": {
+      "eyebrow": "Our values",
+      "heading": "What guides",
+      "highlight": "every decision we make.",
+      "v1Title": "Belonging",
+      "v1Text": "Every home should feel like yours from the very first day.",
+      "v2Title": "Radical simplicity",
+      "v2Text": "From the search to moving in, every step is smooth and friction-free.",
+      "v3Title": "Consistent quality",
+      "v3Text": "The same standard and the same experience, wherever Mboa is.",
+      "v4Title": "Local roots",
+      "v4Text": "Designed in Cameroon, for Cameroonian reality — not copied from elsewhere."
+    },
+    "cta": {
+      "heading": "Be among the first.",
+      "text": "The MVP launches in {date}. Join the waitlist to hear as soon as it opens."
+    }
+  },
+  "notFound": {
+    "title": "Page not found",
+    "heading": "This page doesn't exist — or no longer does.",
+    "lead": "The link may be broken. Head back home to discover Mboa."
+  },
+  "waitlist": {
+    "title": "Waitlist",
+    "description": "Join the Mboa waitlist and be the first to know when the MVP launches in {date}, in Douala and Yaoundé.",
+    "eyebrow": "Waitlist",
+    "heading": "Be among the first",
+    "highlight": "to discover Mboa.",
+    "lead": "Mboa's MVP launches in {date}. Sign up and we'll let you know as soon as it opens, in Douala and Yaoundé.",
+    "counter": "{count} people have already joined the waitlist.",
+    "points": {
+      "quick": "Two minutes, no commitment",
+      "unsubscribe": "Unsubscribe at any time",
+      "noResale": "Your data is never sold"
+    },
+    "formTitle": "Join the list",
+    "form": {
+      "firstName": "First name",
+      "email": "Email",
+      "whatsapp": "WhatsApp number",
+      "contactHint": "How should we reach you? Give at least an email or a WhatsApp number.",
+      "whatsappHint": "Cameroonian numbers without the country code are fine (e.g. 6 99 00 00 00).",
+      "city": "City",
+      "profile": "You are",
+      "motivation": "What would make you use Mboa?",
+      "optional": "optional",
+      "choose": "Choose…",
+      "consentBefore": "I agree that Mboa may use this information to tell me about the launch and keep me updated on the project, as described in the",
+      "consentLink": "privacy policy",
+      "consentAfter": ".",
+      "submit": "Join the waitlist",
+      "submitting": "Sending…",
+      "honeypot": "Leave this field empty"
+    },
+    "cities": {
+      "douala": "Douala",
+      "yaounde": "Yaoundé",
+      "kribi": "Kribi",
+      "bafoussam": "Bafoussam",
+      "other": "Another city"
+    },
+    "profiles": {
+      "tenant": "Tenant, looking for a home",
+      "owner": "Property owner",
+      "agency": "Real estate agency",
+      "agent": "Future visit agent",
+      "other": "Other"
+    },
+    "errors": {
+      "required": "This field is required.",
+      "firstName": "Enter your first name (at least 2 characters).",
+      "email": "This email address doesn't look valid.",
+      "invalidPhone": "This number doesn't look valid. Example: +237 6 99 00 00 00.",
+      "contactRequired": "Give at least an email or a WhatsApp number.",
+      "consent": "We need your agreement to sign you up.",
+      "captcha": "The anti-bot check failed. Reload the page and try again.",
+      "unavailable": "Sign-up is temporarily unavailable. Try again in a few minutes.",
+      "provider": "We couldn't save your sign-up. Try again in a few minutes.",
+      "network": "Lost connection. Check your network and try again.",
+      "summary": "Some fields need fixing."
+    },
+    "success": {
+      "title": "You're in!",
+      "titleNamed": "You're in, {name}!",
+      "subscribed": "You're on the waitlist. We'll let you know as soon as Mboa launches.",
+      "confirmation": "One last step: confirm your sign-up with the link we just emailed you.",
+      "confirmed": "Your sign-up is confirmed. We'll let you know as soon as Mboa launches.",
+      "simulated": "Simulated sign-up (development environment: Brevo is not configured).",
+      "again": "Sign up someone else"
+    },
+    "next": {
+      "eyebrow": "What's next?",
+      "heading": "What happens",
+      "highlight": "after you sign up",
+      "step1Title": "You sign up",
+      "step1Text": "It takes two minutes. You choose how we reach you: email or WhatsApp.",
+      "step2Title": "We keep you posted",
+      "step2Text": "You follow the project's progress and can tell us what matters to you.",
+      "step3Title": "You hear about the launch first",
+      "step3Text": "As soon as the MVP opens in {date}, you're among the first to know."
+    },
+    "pros": {
+      "title": "Owner, agency or agent?",
+      "text": "Pick your profile in the form. Dedicated forms for owners and agents are coming soon."
+    },
+    "faq": {
+      "heading": "Frequently asked questions",
+      "q1": "When will the app be available?",
+      "a1": "Mboa's MVP is planned for {date}. People on the waitlist hear about it first.",
+      "q2": "In which cities?",
+      "a2": "The launch starts in Douala and Yaoundé.",
+      "q3": "On which phones?",
+      "a3": "Mboa is a mobile app for iOS and Android.",
+      "q4": "What do you do with my data?",
+      "a4": "It is only used to tell you about the launch and the project's progress. It is never sold. Everything is explained in our privacy policy.",
+      "q5": "Can I unsubscribe?",
+      "a5": "Yes, at any time: through the link in every email, or by writing to us."
+    }
+  },
+  "legal": {
+    "updated": "Last updated: {date}",
+    "draftNotice": "Provisional version, pending validation.",
+    "identity": {
+      "heading": "Site publisher",
+      "company": "Company",
+      "rccm": "Trade register (RCCM)",
+      "address": "Registered office",
+      "privacyEmail": "Personal data contact",
+      "supportEmail": "Contact",
+      "director": "Publication director"
+    },
+    "host": {
+      "heading": "Hosting",
+      "text": "Cloudflare, Inc. — 101 Townsend St, San Francisco, CA 94107, United States — cloudflare.com"
+    },
+    "toc": "Contents"
+  }
+}

@@ -1,0 +1,133 @@
+---
+import type { Locale } from "@/i18n/locales";
+import type { RouteKey } from "@/i18n/routes";
+import { localizedPath, t } from "@/i18n/utils";
+import { mainNavItems } from "@/lib/navigation";
+import Logo from "../brand/Logo.astro";
+import Button from "../ui/Button.astro";
+import Container from "../ui/Container.astro";
+import Icon from "../ui/Icon.astro";
+import LanguageSwitcher from "./LanguageSwitcher.astro";
+import TopBar from "./TopBar.astro";
+
+interface Props {
+  locale: Locale;
+  routeKey: RouteKey;
+}
+
+const { locale, routeKey } = Astro.props;
+const navItems = mainNavItems();
+const ctaHref = localizedPath("waitlist", locale);
+---
+
+<TopBar locale={locale} />
+
+<header
+  class="sticky top-0 z-40 border-b border-transparent bg-white/90 backdrop-blur-md transition-[box-shadow,border-color] duration-300 data-[scrolled]:border-gray-light data-[scrolled]:shadow-card"
+  data-site-header
+>
+  <Container class="flex h-18 items-center justify-between gap-6">
+    <a href={localizedPath("home", locale)} aria-label={t(locale, "a11y.homeLink")} class="shrink-0">
+      <Logo height={30} />
+    </a>
+
+    {navItems.length > 0 && (
+      <nav aria-label={t(locale, "a11y.mainNav")} class="hidden lg:block">
+        <ul class="flex items-center gap-7 text-sm font-medium text-ink">
+          {navItems.map((key) => (
+            <li>
+              <a
+                href={localizedPath(key, locale)}
+                aria-current={key === routeKey ? "page" : undefined}
+                class="relative py-2 transition-colors hover:text-forest aria-[current=page]:text-forest after:absolute after:inset-x-0 after:-bottom-0.5 after:h-0.5 after:origin-left after:scale-x-0 after:rounded-full after:bg-forest after:transition-transform after:duration-300 hover:after:scale-x-100 aria-[current=page]:after:scale-x-100"
+              >
+                {t(locale, `nav.${key}`)}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+    )}
+
+    <div class="flex items-center gap-3">
+      <LanguageSwitcher locale={locale} routeKey={routeKey} class="hidden sm:block" />
+      <!-- Visibility on the wrapper: Button's own inline-flex would override `hidden`. -->
+      <div class="hidden md:block">
+        <Button href={ctaHref} size="md">
+          {t(locale, "cta.joinWaitlist")}
+        </Button>
+      </div>
+      <button
+        type="button"
+        class="inline-flex size-11 items-center justify-center rounded-button text-ink transition-colors hover:bg-forest-pale lg:hidden"
+        aria-label={t(locale, "a11y.openMenu")}
+        aria-haspopup="dialog"
+        aria-controls="mobile-menu"
+        data-menu-open
+      >
+        <Icon name="menu" size={24} />
+      </button>
+    </div>
+  </Container>
+</header>
+
+<dialog
+  id="mobile-menu"
+  aria-label={t(locale, "a11y.mainNav")}
+  class="m-0 ml-auto h-dvh max-h-dvh w-full max-w-sm bg-white p-0 text-ink backdrop:bg-ink/40 backdrop:backdrop-blur-sm"
+  data-mobile-menu
+>
+  <div class="flex h-full flex-col">
+    <div class="flex h-18 items-center justify-between border-b border-gray-light px-5">
+      <Logo height={28} />
+      <button
+        type="button"
+        class="inline-flex size-11 items-center justify-center rounded-button hover:bg-forest-pale"
+        aria-label={t(locale, "a11y.closeMenu")}
+        data-menu-close
+      >
+        <Icon name="x" size={24} />
+      </button>
+    </div>
+
+    <nav aria-label={t(locale, "a11y.mainNav")} class="flex-1 overflow-y-auto px-5 py-6">
+      <ul class="flex flex-col gap-1">
+        {["home" as const, ...navItems].map((key) => (
+          <li>
+            <a
+              href={localizedPath(key, locale)}
+              aria-current={key === routeKey ? "page" : undefined}
+              class="flex h-12 items-center justify-between rounded-button px-3 font-display text-lg font-semibold transition-colors hover:bg-forest-pale aria-[current=page]:bg-forest-pale aria-[current=page]:text-forest"
+            >
+              {t(locale, `nav.${key}`)}
+              <Icon name="arrow-right" size={18} class="text-gray-mid" />
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+
+    <div class="flex flex-col gap-4 border-t border-gray-light px-5 py-6">
+      <Button href={ctaHref} size="lg" class="w-full">
+        {t(locale, "cta.joinWaitlist")}
+      </Button>
+      <LanguageSwitcher locale={locale} routeKey={routeKey} />
+    </div>
+  </div>
+</dialog>
+
+<script>
+  const header = document.querySelector<HTMLElement>("[data-site-header]");
+  const menu = document.querySelector<HTMLDialogElement>("[data-mobile-menu]");
+
+  document.querySelector("[data-menu-open]")?.addEventListener("click", () => menu?.showModal());
+  document.querySelector("[data-menu-close]")?.addEventListener("click", () => menu?.close());
+  // Clicking the backdrop (the dialog element itself, outside the panel) closes the menu.
+  menu?.addEventListener("click", (event) => {
+    if (event.target === menu) menu.close();
+  });
+
+  const onScroll = () => header?.toggleAttribute("data-scrolled", window.scrollY > 8);
+  onScroll();
+  window.addEventListener("scroll", onScroll, { passive: true });
+</script>

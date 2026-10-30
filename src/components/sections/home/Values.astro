@@ -1,0 +1,44 @@
+---
+import Icon from "@/components/ui/Icon.astro";
+import Section from "@/components/ui/Section.astro";
+import SectionHeading from "@/components/ui/SectionHeading.astro";
+import type { Locale } from "@/i18n/locales";
+import { t, type TranslationKey } from "@/i18n/utils";
+import type { IconName } from "@/lib/icons";
+
+/** The four values (layout reference: row of icon features). Source: Doc 01 §3.3. */
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+
+const values: { n: number; icon: IconName }[] = [
+  { n: 1, icon: "heart" },
+  { n: 2, icon: "sparkles" },
+  { n: 3, icon: "star" },
+  { n: 4, icon: "map-pin" },
+];
+
+const copy = (n: number, field: string) => t(locale, `home.values.v${n}${field}` as TranslationKey);
+---
+
+<Section tone="pale">
+  <SectionHeading
+    align="center"
+    eyebrow={t(locale, "home.values.eyebrow")}
+    title={t(locale, "home.values.heading")}
+    highlight={t(locale, "home.values.highlight")}
+  />
+  <ul class="mt-14 grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
+    {values.map(({ n, icon }) => (
+      <li class="flex flex-col items-center text-center" data-reveal style={`--reveal-delay: ${(n - 1) * 100}ms`}>
+        <span class="flex size-16 items-center justify-center rounded-full bg-forest text-white shadow-lift">
+          <Icon name={icon} size={28} />
+        </span>
+        <h3 class="mt-5 text-h3">{copy(n, "Title")}</h3>
+        <p class="mt-2 max-w-60 text-sm text-forest-dark">{copy(n, "Text")}</p>
+      </li>
+    ))}
+  </ul>
+</Section>

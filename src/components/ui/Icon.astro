@@ -1,0 +1,28 @@
+---
+import { icons, type IconName } from "@/lib/icons";
+
+interface Props {
+  name: IconName;
+  size?: number;
+  /** Accessible label. Without it, the icon is decorative and hidden from screen readers. */
+  label?: string;
+  class?: string;
+}
+
+const { name, size = 24, label, class: className = "" } = Astro.props;
+
+// Doc 05 §5.1: 1.5px stroke up to 24px, 2px above.
+const strokeWidth = size > 24 ? 2 : 1.5;
+const a11y = label
+  ? `role="img" aria-label="${label.replace(/"/g, "&quot;")}"`
+  : `aria-hidden="true" focusable="false"`;
+
+const svg = icons[name]
+  .replace(/\s*class="[^"]*"/, "")
+  .replace(/width="24"/, `width="${size}"`)
+  .replace(/height="24"/, `height="${size}"`)
+  .replace(/stroke-width="2"/, `stroke-width="${strokeWidth}"`)
+  .replace("<svg", `<svg class="${`shrink-0 ${className}`.trim()}" ${a11y}`);
+---
+
+<Fragment set:html={svg} />

@@ -1,0 +1,42 @@
+---
+import AppsShowcase from "@/components/sections/home/AppsShowcase.astro";
+import Audiences from "@/components/sections/home/Audiences.astro";
+import FinalCta from "@/components/sections/home/FinalCta.astro";
+import FounderStory from "@/components/sections/home/FounderStory.astro";
+import Hero from "@/components/sections/home/Hero.astro";
+import RoadmapTeaser from "@/components/sections/home/RoadmapTeaser.astro";
+import TrustFeatures from "@/components/sections/home/TrustFeatures.astro";
+import Values from "@/components/sections/home/Values.astro";
+import type { Locale } from "@/i18n/locales";
+import { formatMonth, t } from "@/i18n/utils";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { settings } from "@/lib/settings";
+
+/**
+ * Home page — structure and style of the layout reference (docs/references/layout-reference.webp),
+ * with Mboa content in place of the template's: testimonials → audiences, client logos → founder story,
+ * photo band → brand promise. News appears once the collection has entries.
+ */
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const date = formatMonth(settings.launch.mvpDate, locale);
+---
+
+<BaseLayout
+  locale={locale}
+  routeKey="home"
+  title={t(locale, "home.title")}
+  description={t(locale, "home.description", { date })}
+>
+  <Hero locale={locale} />
+  <AppsShowcase locale={locale} />
+  <TrustFeatures locale={locale} />
+  <Audiences locale={locale} />
+  <RoadmapTeaser locale={locale} />
+  <FounderStory locale={locale} />
+  <Values locale={locale} />
+  <FinalCta locale={locale} />
+</BaseLayout>

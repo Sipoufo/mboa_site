@@ -1,0 +1,30 @@
+---
+import LogotypeBlanc from "@/assets/brand/mboa-logotype-blanc.svg";
+import LogotypeVert from "@/assets/brand/mboa-logotype-vert.svg";
+import MonogrammeBlanc from "@/assets/brand/mboa-monogramme-blanc.svg";
+import MonogrammeVert from "@/assets/brand/mboa-monogramme-vert.svg";
+
+/** Official brand-kit SVGs only (Doc 05 §4.4) — never redrawn or recolored. */
+interface Props {
+  variant?: "logotype" | "monogram";
+  color?: "green" | "white";
+  /** Rendered height in px. Logotype minimum width is 80px, monogram 32px. */
+  height?: number;
+  class?: string;
+}
+
+const { variant = "logotype", color = "green", height = 32, class: className = "" } = Astro.props;
+
+const Svg =
+  variant === "logotype"
+    ? color === "white"
+      ? LogotypeBlanc
+      : LogotypeVert
+    : color === "white"
+      ? MonogrammeBlanc
+      : MonogrammeVert;
+
+const ratio = variant === "logotype" ? 356 / 103.5 : 104 / 102;
+---
+
+<Svg height={height} width={Math.round(height * ratio)} class={className} aria-hidden="true" />

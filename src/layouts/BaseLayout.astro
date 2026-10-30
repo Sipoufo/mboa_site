@@ -1,0 +1,102 @@
+---
+import { Font } from "astro:assets";
+import Footer from "@/components/layout/Footer.astro";
+import Header from "@/components/layout/Header.astro";
+import type { Locale } from "@/i18n/locales";
+import type { RouteKey } from "@/i18n/routes";
+import { t } from "@/i18n/utils";
+import { organizationJsonLd, serializeJsonLd } from "@/lib/jsonld";
+import { alternatesFor, canonicalFor, pageTitle } from "@/lib/seo";
+import "@/styles/global.css";
+
+interface Props {
+  locale: Locale;
+  /** Route of the page, for canonical + hreflang. Omit for pages outside the route map (404). */
+  routeKey?: RouteKey;
+  title: string;
+  description?: string;
+  noindex?: boolean;
+}
+
+const { locale, routeKey, title, description = t(locale, "meta.defaultDescription"), noindex = false } = Astro.props;
+
+const site = Astro.site ?? new URL(Astro.url.origin);
+const fullTitle = pageTitle(title, t(locale, "meta.titleSuffix"));
+const canonical = routeKey ? canonicalFor(routeKey, locale, site) : undefined;
+const alternates = routeKey ? alternatesFor(routeKey, site) : [];
+const ogImage = new URL("/og/mboa-default.png", site).toString();
+const analyticsToken = import.meta.env.PUBLIC_CF_ANALYTICS_TOKEN;
+---
+
+<!doctype html>
+<html lang={locale}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
+    {canonical && <link rel="canonical" href={canonical} />}
+    {alternates.map((alternate) => (
+      <link rel="alternate" hreflang={alternate.hreflang} href={alternate.href} />
+    ))}
+
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <meta name="theme-color" content="#1A5C45" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Mboa" />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:locale" content={t(locale, "meta.ogLocale")} />
+    {canonical && <meta property="og:url" content={canonical} />}
+    <meta property="og:image" content={ogImage} />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <Font cssVariable="--font-jakarta" preload />
+    <Font cssVariable="--font-inter" preload />
+
+    <script is:inline>
+      // Scroll-reveal fallback for browsers without CSS scroll-driven animations (see global.css).
+      if (
+        !(window.CSS && CSS.supports("animation-timeline: view()")) &&
+        !matchMedia("(prefers-reduced-motion: reduce)").matches
+      ) {
+        document.documentElement.classList.add("js-reveal");
+      }
+    </script>
+
+    <script type="application/ld+json" set:html={serializeJsonLd(organizationJsonLd(site, description))} />
+    {analyticsToken && (
+      <script
+        defer
+        src="https://static.cloudflareinsights.com/beacon.min.js"
+        data-cf-beacon={JSON.stringify({ token: analyticsToken })}
+      />
+    )}
+    <meta name="generator" content={Astro.generator} />
+  </head>
+  <body class="flex min-h-dvh flex-col">
+    <a
+      href="#main"
+      class="sr-only z-50 rounded-button bg-forest px-4 py-3 font-semibold text-white focus:not-sr-only focus:fixed focus:top-3 focus:left-3"
+    >
+      {t(locale, "a11y.skipToContent")}
+    </a>
+
+    <Header locale={locale} routeKey={routeKey ?? "home"} />
+
+    <main id="main" class="flex-1">
+      <slot />
+    </main>
+
+    <Footer locale={locale} />
+
+    <script>
+      import { initReveal } from "@/lib/animations";
+      initReveal();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,42 @@
+---
+import BrandPattern from "@/components/brand/BrandPattern.astro";
+import Button from "@/components/ui/Button.astro";
+import Container from "@/components/ui/Container.astro";
+import type { Locale } from "@/i18n/locales";
+import { formatMonth, localizedPath, t } from "@/i18n/utils";
+import { settings } from "@/lib/settings";
+
+/**
+ * Brand promise (Doc 06 §1.2) + final call to action. A link to the waitlist page rather than
+ * the embedded form: the React form would add ~70 KB of JS to the home page (budget: 60 KB).
+ */
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const date = formatMonth(settings.launch.mvpDate, locale);
+---
+
+<section class="bg-white py-16 md:py-24">
+  <Container>
+    <div
+      class="relative isolate overflow-hidden rounded-[1.75rem] bg-forest px-6 py-14 text-center md:px-16 md:py-20"
+      data-reveal
+    >
+      <BrandPattern opacity={0.06} />
+      <p class="mx-auto max-w-3xl font-display text-2xl leading-snug font-bold text-white md:text-4xl">
+        {t(locale, "home.promise.text")}
+      </p>
+      <p class="mt-4 font-display text-lg font-semibold text-forest-pale">{t(locale, "home.promise.signature")}</p>
+
+      <div class="mx-auto mt-12 max-w-xl border-t border-white/15 pt-10">
+        <h2 class="text-h2 text-white">{t(locale, "home.cta.heading")}</h2>
+        <p class="mt-3 text-white/85">{t(locale, "home.cta.text", { date })}</p>
+        <Button href={localizedPath("waitlist", locale)} variant="inverse" size="lg" class="mt-8">
+          {t(locale, "cta.joinWaitlist")}
+        </Button>
+      </div>
+    </div>
+  </Container>
+</section>

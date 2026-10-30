@@ -1,0 +1,52 @@
+---
+/**
+ * Public waitlist size (Doc 20 §6), filled in by a few lines of vanilla JS — no React needed.
+ * Hidden until /api/waitlist-count returns a number (it returns null below the floor).
+ */
+interface Props {
+  /** Translated sentence with a `{count}` placeholder. */
+  template: string;
+  numberLocale: string;
+  class?: string;
+}
+
+const { template, numberLocale, class: className = "" } = Astro.props;
+---
+
+<p
+  hidden
+  role="status"
+  data-waitlist-count
+  data-template={template}
+  data-number-locale={numberLocale}
+  class:list={[
+    "inline-flex items-center gap-2 rounded-pill bg-forest-pale px-4 py-2 text-sm text-forest [&[hidden]]:hidden",
+    className,
+  ]}
+>
+  <span class="size-2 animate-pulse rounded-full bg-forest" aria-hidden="true"></span>
+  <span data-waitlist-count-text></span>
+</p>
+
+<script>
+  const targets = document.querySelectorAll<HTMLElement>("[data-waitlist-count]");
+  if (targets.length > 0) {
+    fetch("/api/waitlist-count")
+      .then((response) => (response.ok ? response.json() : { count: null }))
+      .then(({ count }: { count: number | null }) => {
+        if (typeof count !== "number") return;
+        for (const target of targets) {
+          const formatted = new Intl.NumberFormat(target.dataset.numberLocale).format(count);
+          const [before = "", after = ""] = (target.dataset.template ?? "").split("{count}");
+          const text = target.querySelector("[data-waitlist-count-text]");
+          if (!text) continue;
+          const strong = document.createElement("strong");
+          strong.className = "font-semibold";
+          strong.textContent = formatted;
+          text.replaceChildren(before, strong, after);
+          target.hidden = false;
+        }
+      })
+      .catch(() => undefined);
+  }
+</script>

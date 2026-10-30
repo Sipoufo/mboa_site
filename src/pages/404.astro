@@ -1,0 +1,35 @@
+---
+import DecorDiscs from "@/components/brand/DecorDiscs.astro";
+import Button from "@/components/ui/Button.astro";
+import Container from "@/components/ui/Container.astro";
+import { localizedPath, t } from "@/i18n/utils";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+
+// One static 404 for both locales: French first, English below.
+---
+
+<BaseLayout locale="fr" title={t("fr", "notFound.title")} noindex>
+  <section class="relative isolate overflow-hidden">
+    <DecorDiscs />
+    <Container class="grid gap-16 py-20 md:grid-cols-2 md:py-28">
+      <div>
+        <p class="font-display text-6xl font-extrabold text-forest">404</p>
+        <h1 class="mt-4 text-h1">{t("fr", "notFound.heading")}</h1>
+        <p class="mt-4 text-lead text-gray-dark">{t("fr", "notFound.lead")}</p>
+        <Button href={localizedPath("home", "fr")} class="mt-8">
+          {t("fr", "cta.backHome")}
+        </Button>
+      </div>
+      <div lang="en" class="md:border-l md:border-gray-light md:pl-16">
+        <p class="font-display text-6xl font-extrabold text-forest-pale" aria-hidden="true">
+          404
+        </p>
+        <h2 class="mt-4 text-h1">{t("en", "notFound.heading")}</h2>
+        <p class="mt-4 text-lead text-gray-dark">{t("en", "notFound.lead")}</p>
+        <Button href={localizedPath("home", "en")} variant="outline" class="mt-8">
+          {t("en", "cta.backHome")}
+        </Button>
+      </div>
+    </Container>
+  </section>
+</BaseLayout>
