@@ -11,6 +11,7 @@
   "vars": {
     "PUBLIC_SITE_URL": "https://mboacm.com",
     "NODE_VERSION": "22",
+    "BREVO_LIST_WAITLIST": "3",
   },
   "observability": {
     "enabled": true,
