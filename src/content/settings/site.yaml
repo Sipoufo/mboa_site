@@ -19,8 +19,8 @@ legal:
   companyName: "MBOA SAS"
   rccm: ""
   address: ""
-  privacyEmail: ""
-  supportEmail: ""
+  privacyEmail: "privacy@mboacm.com"
+  supportEmail: "support@mboacm.com"
   publicationDirector: "Yvan SIPOUFO"
 
 contact:
