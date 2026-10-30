@@ -58,4 +58,7 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
   },
+  redirects: {
+    '/carte': '/liste-d-attente?source=carte'
+  }
 });
