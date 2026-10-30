@@ -10,6 +10,7 @@
   },
   "vars": {
     "PUBLIC_SITE_URL": "https://mboacm.com",
+    "NODE_VERSION": "22",
   },
   "observability": {
     "enabled": true,
