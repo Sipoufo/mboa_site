@@ -38,6 +38,8 @@ import {
   Users,
   Wrench,
   X,
+  ChartPie,
+  TrendingUp,
 } from "lucide-static";
 
 export const icons = {
@@ -48,6 +50,7 @@ export const icons = {
   calendar: Calendar,
   "calendar-check": CalendarCheck,
   camera: Camera,
+  "chartPie": ChartPie,
   check: Check,
   "clipboard-list": ClipboardList,
   "file-signature": FileSignature,
@@ -72,6 +75,7 @@ export const icons = {
   sparkles: Sparkles,
   star: Star,
   telescope: Telescope,
+  "trendingUp": TrendingUp,
   "user-check": UserCheck,
   users: Users,
   wrench: Wrench,

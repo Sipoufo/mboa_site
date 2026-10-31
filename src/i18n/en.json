@@ -2,7 +2,7 @@
   "meta": {
     "siteName": "Mboa",
     "titleSuffix": "Mboa",
-    "defaultTitle": "Mboa — Cameroonian real estate, differently.",
+    "defaultTitle": "Mboa, Cameroonian real estate, differently.",
     "defaultDescription": "Find, visit and sign for your home in Douala and Yaoundé, all online. Verified listings, visits with a certified agent, the Mboa Contract signed online.",
     "ogLocale": "en_US"
   },
@@ -12,7 +12,7 @@
     "closeMenu": "Close menu",
     "mainNav": "Main navigation",
     "footerNav": "Footer navigation",
-    "homeLink": "Mboa — home",
+    "homeLink": "Mboa, home",
     "languageSwitcher": "Site language",
     "newTab": "(opens in a new tab)"
   },
@@ -71,16 +71,16 @@
     "follow": "Follow Mboa"
   },
   "home": {
-    "title": "Mboa — Cameroonian real estate, differently.",
+    "title": "Mboa, Cameroonian real estate, differently.",
     "description": "Find, visit and sign for your home in Douala and Yaoundé, all online. Verified listings, visits with a certified agent, the Mboa Contract signed online. MVP launch in {date}.",
     "hero": {
       "eyebrow": "MVP launch: {date}",
       "heading": "Finding a home shouldn't feel like a fight.",
-      "lead": "Mboa connects tenants with verified landlords, with visits led by a certified agent and a contract signed online.",
+      "lead": "Mboa connects tenants with verified landlords, offers viewings led by a certified agent and online contract signing, while providing comprehensive management of your properties and their finances.",
       "ctaSecondary": "Discover the apps",
       "tileLaunch": "MVP launch",
       "tileCities": "target cities",
-      "tileCitiesList": "Douala · Yaoundé · Kribi · Bafoussam",
+      "tileCitiesList": "Douala - Yaoundé - Kribi - Bafoussam",
       "tileApps": "apps",
       "tileAppsList": "Mboa · Mboa Pro · management",
       "phoneAlt": "Preview of the Mboa app (screenshot coming soon)",
@@ -97,12 +97,14 @@
       "mboaP2": "Scheduled visits with a certified agent",
       "mboaP3": "Messaging with landlords",
       "mboaP4": "The Mboa Contract, signed online",
+      "mboaP5": "Invoice Management",
       "proName": "Mboa Pro app",
       "proFor": "For owners, agencies and agents",
       "proP1": "Listing publication and trust badges",
       "proP2": "Tenant messages and applicants' Mboa Score",
       "proP3": "Visits handled by certified agents",
       "proP4": "Agent space: areas, availability, visit reports",
+      "proP5": "Financial Management: Invoice Tracking and Financial Report",
       "gestionName": "The management app",
       "gestionFor": "For owners who hand their property over to Mboa",
       "gestionP1": "Rent tracking and reminders",
@@ -127,7 +129,11 @@
       "f5Title": "Mboa Score",
       "f5Text": "A tenant reliability score that reassures landlords.",
       "f6Title": "Built-in messaging",
-      "f6Text": "Talk to landlords directly in the app."
+      "f6Text": "Talk to landlords directly in the app.",
+      "f7Title": "Financial Management",
+      "f7Text": "Real-time financial tracking and reporting tool.",
+      "f8Title": "Billing",
+      "f8Text": "Generation and tracking of invoices between parties."
     },
     "audiences": {
       "eyebrow": "Who it's for",
@@ -137,7 +143,7 @@
       "tenantsText": "Visit properties with a certified agent, sign your contract online, move in with peace of mind.",
       "tenantsCta": "I'm looking for a home",
       "ownersTitle": "You rent out a property",
-      "ownersText": "List your properties, get verified tenants and sign secure contracts — no paperwork, no middleman.",
+      "ownersText": "List your properties, get verified tenants and sign secure contracts no paperwork, no middleman.",
       "ownersCta": "I have a property",
       "agentsTitle": "You want to become an agent",
       "agentsText": "Become a certified Mboa agent and earn an income by running property visits in your neighbourhood.",
@@ -167,7 +173,7 @@
     },
     "promise": {
       "text": "“With Mboa, you know what you're getting before you even show up.”",
-      "signature": "Mboa — Home, differently."
+      "signature": "Mboa, Home, differently."
     },
     "values": {
       "eyebrow": "Our values",
@@ -180,7 +186,7 @@
       "v3Title": "Consistent quality",
       "v3Text": "The same standard and the same experience, wherever Mboa is.",
       "v4Title": "Local roots",
-      "v4Text": "Designed in Cameroon, for Cameroonian reality — not copied from elsewhere."
+      "v4Text": "Designed in Cameroon, for Cameroonian reality, not copied from elsewhere."
     },
     "cta": {
       "heading": "Be among the first.",
@@ -189,7 +195,7 @@
   },
   "notFound": {
     "title": "Page not found",
-    "heading": "This page doesn't exist — or no longer does.",
+    "heading": "This page doesn't exist or no longer does.",
     "lead": "The link may be broken. Head back home to discover Mboa."
   },
   "waitlist": {
@@ -303,7 +309,7 @@
     },
     "host": {
       "heading": "Hosting",
-      "text": "Cloudflare, Inc. — 101 Townsend St, San Francisco, CA 94107, United States — cloudflare.com"
+      "text": "Cloudflare, Inc. — 101 Townsend St, San Francisco, CA 94107, United States, cloudflare.com"
     },
     "toc": "Contents"
   }

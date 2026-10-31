@@ -96,7 +96,7 @@ export async function handleWaitlist(request: Request, deps: HandlerDeps): Promi
   const listId = Number(env.BREVO_LIST_WAITLIST);
   if (!env.BREVO_API_KEY || !Number.isInteger(listId) || listId <= 0) {
     if (dev) {
-      log.warn("[waitlist] Brevo not configured — submission simulated (dev only)");
+      log.warn("[waitlist] Brevo not configured submission simulated (dev only)");
       return json({ ok: true, status: "simulated" });
     }
     log.error("[waitlist] BREVO_API_KEY / BREVO_LIST_WAITLIST are not configured");
