@@ -2,7 +2,7 @@
   "meta": {
     "siteName": "Mboa",
     "titleSuffix": "Mboa",
-    "defaultTitle": "Mboa — L'immobilier camerounais, autrement.",
+    "defaultTitle": "Mboa, L'immobilier camerounais, autrement.",
     "defaultDescription": "Trouvez, visitez et signez votre logement à Douala et Yaoundé, le tout en ligne. Annonces vérifiées, visites avec un agent certifié, Contrat Mboa signé en ligne.",
     "ogLocale": "fr_FR"
   },
@@ -12,7 +12,7 @@
     "closeMenu": "Fermer le menu",
     "mainNav": "Navigation principale",
     "footerNav": "Navigation de pied de page",
-    "homeLink": "Mboa — accueil",
+    "homeLink": "Mboa, accueil",
     "languageSwitcher": "Langue du site",
     "newTab": "(s'ouvre dans un nouvel onglet)"
   },
@@ -71,16 +71,16 @@
     "follow": "Suivez Mboa"
   },
   "home": {
-    "title": "Mboa — L'immobilier camerounais, autrement.",
+    "title": "Mboa, L'immobilier camerounais, autrement.",
     "description": "Trouvez, visitez et signez votre logement à Douala et Yaoundé, le tout en ligne. Annonces vérifiées, visites avec un agent certifié, Contrat Mboa signé en ligne. Lancement du MVP en {date}.",
     "hero": {
       "eyebrow": "Lancement du MVP : {date}",
       "heading": "Trouver un chez‑soi ne devrait pas être une épreuve.",
-      "lead": "Mboa met en relation locataires et propriétaires vérifiés, avec des visites accompagnées par un agent certifié et un contrat signé en ligne.",
+      "lead": "Mboa met en relation locataires et propriétaires vérifiés, propose des visites accompagnées par un agent certifié et la signature de contrat en ligne, tout en intégrant la gestion intégrale de vos biens et de leurs finances.",
       "ctaSecondary": "Découvrir les applications",
       "tileLaunch": "Lancement du MVP",
       "tileCities": "villes ciblées",
-      "tileCitiesList": "Douala · Yaoundé · Kribi · Bafoussam",
+      "tileCitiesList": "Douala - Yaoundé - Kribi - Bafoussam",
       "tileApps": "applications",
       "tileAppsList": "Mboa · Mboa Pro · gestion",
       "phoneAlt": "Aperçu de l'application Mboa (capture d'écran à venir)",
@@ -97,12 +97,14 @@
       "mboaP2": "Visites planifiées avec un agent certifié",
       "mboaP3": "Messagerie avec les propriétaires",
       "mboaP4": "Contrat Mboa signé en ligne",
+      "mboaP5": "Gestion des factures",
       "proName": "App Mboa Pro",
       "proFor": "Pour les propriétaires, agences et agents",
       "proP1": "Publication d'annonces et badges de confiance",
       "proP2": "Messages des locataires et Mboa Score des candidats",
       "proP3": "Visites assurées par des agents certifiés",
       "proP4": "Espace agent : zones, disponibilités, rapports de visite",
+      "proP5": "Gestion financière: suivie des factures et rapport financier",
       "gestionName": "L'app de gestion",
       "gestionFor": "Pour les propriétaires qui confient leur bien à Mboa",
       "gestionP1": "Suivi des loyers et des relances",
@@ -127,7 +129,11 @@
       "f5Title": "Mboa Score",
       "f5Text": "Un score de fiabilité du locataire, qui rassure les propriétaires.",
       "f6Title": "Messagerie intégrée",
-      "f6Text": "Échangez avec les propriétaires directement dans l'application."
+      "f6Text": "Échangez avec les propriétaires directement dans l'application.",
+      "f7Title": "Gestion financière",
+      "f7Text": "Outil de suivi financier et de reporting en temps réel.",
+      "f8Title": "Facturation",
+      "f8Text": "Génération et suivi de factures entre les parties."
     },
     "audiences": {
       "eyebrow": "Pour qui ?",
@@ -137,7 +143,7 @@
       "tenantsText": "Visitez des biens avec un agent certifié, signez votre contrat en ligne, emménagez l'esprit tranquille.",
       "tenantsCta": "Je cherche un logement",
       "ownersTitle": "Vous louez un bien",
-      "ownersText": "Publiez vos biens, recevez des locataires vérifiés et signez des contrats sécurisés — sans paperasse, sans intermédiaire.",
+      "ownersText": "Publiez vos biens, recevez des locataires vérifiés et signez des contrats sécurisés sans paperasse, sans intermédiaire.",
       "ownersCta": "Je propose un bien",
       "agentsTitle": "Vous voulez devenir agent",
       "agentsText": "Devenez agent Mboa certifié et gagnez un revenu en réalisant des visites dans votre quartier.",
@@ -160,14 +166,14 @@
     },
     "founder": {
       "eyebrow": "Pourquoi Mboa",
-      "quote": "Mboa est né d'une frustration personnelle. Chercher un logement au Cameroun, c'est une épreuve que tout le monde a vécue — les arnaques, les faux numéros, l'argent versé sans garantie. J'ai voulu construire ce qui aurait changé cette expérience. Pas une app de plus. Une infrastructure de confiance pour l'immobilier camerounais.",
+      "quote": "Mboa est né d'une frustration personnelle. Chercher un logement au Cameroun, c'est une épreuve que tout le monde a vécue les arnaques, les faux numéros, l'argent versé sans garantie. J'ai voulu construire ce qui aurait changé cette expérience. Pas une app de plus. Une infrastructure de confiance pour l'immobilier camerounais.",
       "name": "Yvan SIPOUFO",
       "role": "Fondateur de Mboa",
       "photoAlt": "Portrait d'Yvan SIPOUFO, fondateur de Mboa (photo à venir)"
     },
     "promise": {
       "text": "« Avec Mboa, vous savez ce que vous trouvez avant même d'arriver. »",
-      "signature": "Mboa — Chez toi, autrement."
+      "signature": "Mboa, Chez toi, autrement."
     },
     "values": {
       "eyebrow": "Nos valeurs",
@@ -180,7 +186,7 @@
       "v3Title": "Qualité constante",
       "v3Text": "La même exigence et la même expérience, partout où Mboa est présent.",
       "v4Title": "Ancrage local",
-      "v4Text": "Pensé au Cameroun, pour la réalité camerounaise — pas copié ailleurs."
+      "v4Text": "Pensé au Cameroun, pour la réalité camerounaise pas copié ailleurs."
     },
     "cta": {
       "heading": "Soyez parmi les premiers.",
@@ -189,7 +195,7 @@
   },
   "notFound": {
     "title": "Page introuvable",
-    "heading": "Cette page n'existe pas — ou plus.",
+    "heading": "Cette page n'existe pas ou plus.",
     "lead": "Le lien est peut-être erroné. Revenez à l'accueil pour découvrir Mboa."
   },
   "waitlist": {
@@ -303,7 +309,7 @@
     },
     "host": {
       "heading": "Hébergement",
-      "text": "Cloudflare, Inc. — 101 Townsend St, San Francisco, CA 94107, États-Unis — cloudflare.com"
+      "text": "Cloudflare, Inc. 101 Townsend St, San Francisco, CA 94107, États-Unis, cloudflare.com"
     },
     "toc": "Sommaire"
   }

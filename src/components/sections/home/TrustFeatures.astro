@@ -24,10 +24,12 @@ const features: { n: number; icon: IconName }[] = [
   { n: 4, icon: "file-signature" },
   { n: 5, icon: "gauge" },
   { n: 6, icon: "message-circle" },
+  { n: 7, icon: "trendingUp" },
+  { n: 8, icon: "chartPie" },
 ];
 
-const left = features.slice(0, 3);
-const right = features.slice(3);
+const left = features.slice(0, 4);
+const right = features.slice(4);
 const title = (n: number) => t(locale, `home.trust.f${n}Title` as TranslationKey);
 const text = (n: number) => t(locale, `home.trust.f${n}Text` as TranslationKey);
 ---
