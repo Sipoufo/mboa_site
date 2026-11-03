@@ -13,9 +13,13 @@ import { localeTags, type Locale } from "@/i18n/locales";
 import { formatMonth, localizedPath, t } from "@/i18n/utils";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import { TURNSTILE_TEST_SITE_KEY } from "@/lib/forms/turnstile";
+import { faqPageJsonLd } from "@/lib/jsonld";
 import { settings } from "@/lib/settings";
 
-/** Waitlist page — the site's main call to action (CLAUDE.md › Purpose). Sources: Doc 18 §4.1, Doc 20 §6. */
+/**
+ * Waitlist page — the site's main call to action (CLAUDE.md › Purpose).
+ * Sources: Doc 18 §4.1, Doc 20 §6; benefits = founder's Post 10 (closed test, limited spots — never promised to everyone).
+ */
 interface Props {
   locale: Locale;
 }
@@ -26,6 +30,13 @@ const date = formatMonth(settings.launch.mvpDate, locale);
 const turnstileSiteKey =
   import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || (import.meta.env.DEV ? TURNSTILE_TEST_SITE_KEY : "");
 if (!turnstileSiteKey) console.warn("[waitlist] PUBLIC_TURNSTILE_SITE_KEY is not set — submissions will be refused");
+
+// What signing up gives — the three promises of the waitlist announcement (Post 10).
+const benefits = [
+  { icon: "calendar-check", n: 1 },
+  { icon: "smartphone", n: 2 },
+  { icon: "key-round", n: 3 },
+] as const;
 
 const points = [
   { icon: "sparkles", text: t(locale, "waitlist.points.quick") },
@@ -39,7 +50,8 @@ const steps = [
   { title: t(locale, "waitlist.next.step3Title"), text: t(locale, "waitlist.next.step3Text", { date }) },
 ];
 
-const faq = ([1, 2, 3, 4, 5] as const).map((n) => ({
+// Q6 (the closed test) sits right after "when", where visitors look for it.
+const faq = ([1, 6, 2, 3, 4, 5] as const).map((n) => ({
   question: t(locale, `waitlist.faq.q${n}`),
   answer: t(locale, `waitlist.faq.a${n}`, { date }),
   // The data question links to the privacy policy.
@@ -52,6 +64,9 @@ const faq = ([1, 2, 3, 4, 5] as const).map((n) => ({
   routeKey="waitlist"
   title={t(locale, "waitlist.title")}
   description={t(locale, "waitlist.description", { date })}
+  ogImage={`/og/mboa-liste-attente-${locale}.png`}
+  ogImageAlt={t(locale, "waitlist.ogImageAlt")}
+  jsonLd={[faqPageJsonLd(faq)]}
 >
   <section class="relative isolate overflow-hidden">
     <DecorDiscs />
@@ -64,12 +79,24 @@ const faq = ([1, 2, 3, 4, 5] as const).map((n) => ({
           highlight={t(locale, "waitlist.highlight")}
           description={t(locale, "waitlist.lead", { date })}
         />
-        <ul class="mt-8 flex flex-col gap-3">
-          {points.map((point) => (
-            <li class="flex items-center gap-3 text-ink">
-              <span class="flex size-9 items-center justify-center rounded-full bg-forest-pale text-forest">
-                <Icon name={point.icon} size={18} />
+        <h2 class="mt-10 text-h3">{t(locale, "waitlist.benefits.title")}</h2>
+        <ul class="mt-5 flex flex-col gap-4">
+          {benefits.map(({ icon, n }) => (
+            <li class="flex gap-4 rounded-card bg-white p-4 shadow-card">
+              <span class="flex size-11 shrink-0 items-center justify-center rounded-full bg-forest text-white">
+                <Icon name={icon} size={22} />
               </span>
+              <div>
+                <h3 class="font-display text-base font-bold text-ink">{t(locale, `waitlist.benefits.b${n}Title`)}</h3>
+                <p class="mt-1 text-sm text-gray-dark">{t(locale, `waitlist.benefits.b${n}Text`, { date })}</p>
+              </div>
+            </li>
+          ))}
+        </ul>
+        <ul class="mt-6 flex flex-col gap-2 text-sm text-gray-dark">
+          {points.map((point) => (
+            <li class="flex items-center gap-2">
+              <Icon name={point.icon} size={16} class="text-forest" />
               {point.text}
             </li>
           ))}

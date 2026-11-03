@@ -4,7 +4,10 @@ import {
   cities,
   limits,
   normalizePhone,
+  normalizeSource,
   profiles,
+  DEFAULT_SOURCE,
+  SOURCE_KEY,
   type Profile,
   type WaitlistField,
 } from "@/lib/forms/waitlist-fields";
@@ -46,6 +49,20 @@ function loadTurnstile(): Promise<void> {
     script.onerror = () => reject(new Error("turnstile"));
     document.head.appendChild(script);
   });
+}
+
+/** Channel of this visit: `?source=` on this page, else the one remembered by BaseLayout, else "direct". */
+function currentSource(): string {
+  const params = new URLSearchParams(window.location.search);
+  let remembered: string | null = null;
+  try {
+    remembered = sessionStorage.getItem(SOURCE_KEY);
+  } catch {
+    // Storage blocked (private mode): fall back to the URL only.
+  }
+  return (
+    normalizeSource(params.get("source") ?? params.get("utm_source")) ?? normalizeSource(remembered) ?? DEFAULT_SOURCE
+  );
 }
 
 function initialProfile(): Profile | "" {
@@ -156,6 +173,7 @@ export default function WaitlistForm({ copy, turnstileSiteKey }: Props) {
           consent: form.get("consent") === "on",
           company: form.get("company") || undefined,
           locale: copy.locale,
+          source: currentSource(),
           turnstileToken: token.current,
         }),
       });

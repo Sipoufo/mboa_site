@@ -1,6 +1,6 @@
 import { describe, expect, it, vi } from "vitest";
 import { handleWaitlist, handleWaitlistCount, type FormsEnv } from "@/lib/forms/handlers";
-import { normalizePhone, waitlistSchema } from "@/lib/forms/waitlist";
+import { normalizePhone, normalizeSource, waitlistSchema } from "@/lib/forms/waitlist";
 
 const valid = {
   firstName: "Ines",
@@ -64,6 +64,21 @@ describe("normalizePhone", () => {
   });
 });
 
+describe("normalizeSource", () => {
+  it.each([
+    ["instagram", "instagram"],
+    ["Instagram", "instagram"],
+    [" carte ", "carte"],
+    ["salon-2026_douala", "salon-2026_douala"],
+  ])("%s → %s", (input, expected) => {
+    expect(normalizeSource(input)).toBe(expected);
+  });
+
+  it.each(["", "<script>", "a b", "-x", "x".repeat(33)])("ignores %j", (input) => {
+    expect(normalizeSource(input)).toBeNull();
+  });
+});
+
 describe("waitlistSchema", () => {
   it("accepts a valid submission", () => {
     expect(waitlistSchema.safeParse(valid).success).toBe(true);
@@ -78,6 +93,12 @@ describe("waitlistSchema", () => {
     const result = waitlistSchema.safeParse({ ...valid, email: "", whatsapp: "" });
     expect(result.success).toBe(false);
     expect(result.error?.issues[0]).toMatchObject({ path: ["email"], message: "contact_required" });
+  });
+
+  it("keeps a valid source and falls back to direct", () => {
+    expect(waitlistSchema.parse({ ...valid, source: "Instagram" }).source).toBe("instagram");
+    expect(waitlistSchema.parse(valid).source).toBe("direct");
+    expect(waitlistSchema.parse({ ...valid, source: "<b>" }).source).toBe("direct");
   });
 
   it("requires consent", () => {
@@ -102,8 +123,15 @@ describe("handleWaitlist", () => {
       email: "ines@example.com",
       listIds: [7],
       updateEnabled: true,
-      attributes: { FIRSTNAME: "Ines", CITY: "douala", PROFILE: "tenant", LOCALE: "fr", SOURCE: "site-waitlist" },
+      attributes: { FIRSTNAME: "Ines", CITY: "douala", PROFILE: "tenant", LOCALE: "fr", SOURCE: "direct" },
     });
+  });
+
+  it("records the sign-up source in Brevo", async () => {
+    const { fn, calls } = fakeFetch();
+    await handleWaitlist(post({ ...valid, source: "carte" }), { env: configured, dev: false, fetch: fn, log: silent });
+    const brevo = calls.find((call) => call.url.endsWith("/contacts"));
+    expect(brevo?.body).toMatchObject({ attributes: { SOURCE: "carte" } });
   });
 
   it("identifies a WhatsApp-only contact by ext_id", async () => {

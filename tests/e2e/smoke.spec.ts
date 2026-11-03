@@ -100,3 +100,22 @@ test("home ships no React runtime", async ({ page }) => {
   await page.waitForLoadState("networkidle");
   expect(scripts.filter((url) => url.includes("/_astro/client") || url.includes("react"))).toEqual([]);
 });
+
+test.describe("SEO", () => {
+  test("waitlist exposes its FAQ, share image and website name to search engines", async ({ page }) => {
+    await page.goto("/liste-d-attente");
+    const graph = JSON.parse((await page.locator('script[type="application/ld+json"]').textContent()) ?? "{}");
+    const types = graph["@graph"].map((node: { "@type": string }) => node["@type"]);
+    expect(types).toEqual(["Organization", "WebSite", "FAQPage"]);
+    const faq = graph["@graph"][2];
+    expect(faq.mainEntity.length).toBe(await page.locator("details").count());
+    await expect(page.locator('meta[property="og:image"]')).toHaveAttribute("content", /mboa-liste-attente-fr\.png$/);
+    await expect(page.locator('meta[property="og:image:alt"]')).toHaveAttribute("content", /.+/);
+  });
+
+  test("sitemap pairs FR and EN versions", async ({ request }) => {
+    const xml = await (await request.get("/sitemap-0.xml")).text();
+    expect(xml).toContain('hreflang="en-CM" href="https://mboacm.com/en/waitlist"');
+    expect(xml).toContain('hreflang="fr-CM" href="https://mboacm.com/confidentialite"');
+  });
+});

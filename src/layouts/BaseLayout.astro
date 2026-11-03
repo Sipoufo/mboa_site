@@ -5,7 +5,7 @@ import Header from "@/components/layout/Header.astro";
 import type { Locale } from "@/i18n/locales";
 import type { RouteKey } from "@/i18n/routes";
 import { t } from "@/i18n/utils";
-import { organizationJsonLd, serializeJsonLd } from "@/lib/jsonld";
+import { pageGraph, serializeJsonLd } from "@/lib/jsonld";
 import { alternatesFor, canonicalFor, pageTitle } from "@/lib/seo";
 import "@/styles/global.css";
 
@@ -16,15 +16,31 @@ interface Props {
   title: string;
   description?: string;
   noindex?: boolean;
+  /** Social-share image under public/ (1200 × 630). Defaults to the brand image. */
+  ogImage?: string;
+  /** Text alternative of the share image (defaults to the brand image's). */
+  ogImageAlt?: string;
+  /** Page-specific schema.org nodes (e.g. FAQPage), added to the page's JSON-LD graph. */
+  jsonLd?: Record<string, unknown>[];
 }
 
-const { locale, routeKey, title, description = t(locale, "meta.defaultDescription"), noindex = false } = Astro.props;
+const {
+  locale,
+  routeKey,
+  title,
+  description = t(locale, "meta.defaultDescription"),
+  noindex = false,
+  ogImage: ogImagePath = "/og/mboa-default.png",
+  ogImageAlt = t(locale, "meta.ogImageAlt"),
+  jsonLd = [],
+} = Astro.props;
 
 const site = Astro.site ?? new URL(Astro.url.origin);
 const fullTitle = pageTitle(title, t(locale, "meta.titleSuffix"));
 const canonical = routeKey ? canonicalFor(routeKey, locale, site) : undefined;
 const alternates = routeKey ? alternatesFor(routeKey, site) : [];
-const ogImage = new URL("/og/mboa-default.png", site).toString();
+const ogImage = new URL(ogImagePath, site).toString();
+const otherLocale = locale === "fr" ? "en" : "fr";
 const analyticsToken = import.meta.env.PUBLIC_CF_ANALYTICS_TOKEN;
 ---
 
@@ -51,13 +67,29 @@ const analyticsToken = import.meta.env.PUBLIC_CF_ANALYTICS_TOKEN;
     <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:locale" content={t(locale, "meta.ogLocale")} />
+    {alternates.length > 0 && <meta property="og:locale:alternate" content={t(otherLocale, "meta.ogLocale")} />}
     {canonical && <meta property="og:url" content={canonical} />}
     <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={ogImageAlt} />
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content={ogImage} />
 
     <Font cssVariable="--font-jakarta" preload />
     <Font cssVariable="--font-inter" preload />
 
+    <script is:inline>
+      // Remember the sign-up channel (?source=instagram, ?source=carte…) for the rest of the visit,
+      // so it survives navigation to the waitlist. Key = SOURCE_KEY in src/lib/forms/waitlist-fields.ts.
+      try {
+        const params = new URLSearchParams(location.search);
+        const source = params.get("source") || params.get("utm_source");
+        if (source) sessionStorage.setItem("mboa-source", source);
+      } catch {
+        // Storage blocked (private mode): the form then relies on the URL alone.
+      }
+    </script>
     <script is:inline>
       // Scroll-reveal fallback for browsers without CSS scroll-driven animations (see global.css).
       if (
@@ -68,7 +100,7 @@ const analyticsToken = import.meta.env.PUBLIC_CF_ANALYTICS_TOKEN;
       }
     </script>
 
-    <script type="application/ld+json" set:html={serializeJsonLd(organizationJsonLd(site, description))} />
+    <script type="application/ld+json" set:html={serializeJsonLd(pageGraph(site, locale, description, jsonLd))} />
     {analyticsToken && (
       <script
         defer

@@ -23,5 +23,8 @@ export default defineConfig({
     url: `http://localhost:${PORT}`,
     reuseExistingServer: !process.env.CI,
     timeout: 180_000,
+    // Variables already in the environment win over .env: the test build must never carry the
+    // production Turnstile / analytics keys (they call Cloudflare from localhost and fail).
+    env: { PUBLIC_TURNSTILE_SITE_KEY: "", PUBLIC_CF_ANALYTICS_TOKEN: "" },
   },
 });

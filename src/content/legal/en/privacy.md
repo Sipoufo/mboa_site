@@ -1,7 +1,7 @@
 ---
 title: Privacy policy
 description: How Mboa collects, uses and protects the personal data gathered on this site and on the waitlist.
-updated: 2026-10-27
+updated: 2026-11-03
 draft: true
 ---
 
@@ -17,14 +17,15 @@ This policy covers the Mboa website and the waitlist. The Mboa apps (Mboa app, M
 
 We only collect what we need.
 
-| Data                                          | Why                                                     | Required             |
-| --------------------------------------------- | ------------------------------------------------------- | -------------------- |
-| First name                                    | To address our messages to you                          | Yes                  |
-| Email and/or WhatsApp number                  | To tell you about the launch and the project's progress | At least one of them |
-| City                                          | To know where you're expecting Mboa                     | Yes                  |
-| Profile (tenant, owner, agency, agent…)       | To send you relevant information                        | Yes                  |
-| Answer to "What would make you use Mboa?"     | To understand your expectations and improve the product | No                   |
-| Site language, sign-up date and consent given | To write to you in your language and prove your consent | Automatic            |
+| Data                                                  | Why                                                     | Required             |
+| ----------------------------------------------------- | ------------------------------------------------------- | -------------------- |
+| First name                                            | To address our messages to you                          | Yes                  |
+| Email and/or WhatsApp number                          | To tell you about the launch and the project's progress | At least one of them |
+| City                                                  | To know where you're expecting Mboa                     | Yes                  |
+| Profile (tenant, owner, agency, agent…)               | To send you relevant information                        | Yes                  |
+| Answer to "What would make you use Mboa?"             | To understand your expectations and improve the product | No                   |
+| Site language, sign-up date and consent given         | To write to you in your language and prove your consent | Automatic            |
+| Sign-up origin (link used: Instagram, business card…) | To know which channels bring people to Mboa             | Automatic            |
 
 The site never asks for an ID document, bank details or Mobile Money credentials.
 
@@ -66,7 +67,7 @@ To unsubscribe, use the link in any of our emails or write to us. For other requ
 
 ## 9. Cookies and analytics
 
-The site sets no advertising or analytics cookies. Traffic is measured with Cloudflare Web Analytics, without cookies and in aggregate. The anti-bot check (Cloudflare Turnstile) is only used to protect the forms.
+The site sets no advertising or analytics cookies. Traffic is measured with Cloudflare Web Analytics, without cookies and in aggregate. The anti-bot check (Cloudflare Turnstile) is only used to protect the forms. The link you arrived through (for example from Instagram or the business card) is kept in your browser for the length of your visit, without a cookie, and cleared when you close the tab.
 
 ## 10. Security
 

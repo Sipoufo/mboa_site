@@ -4,7 +4,8 @@
     "titleSuffix": "Mboa",
     "defaultTitle": "Mboa, L'immobilier camerounais, autrement.",
     "defaultDescription": "Trouvez, visitez et signez votre logement à Douala et Yaoundé, le tout en ligne. Annonces vérifiées, visites avec un agent certifié, Contrat Mboa signé en ligne.",
-    "ogLocale": "fr_FR"
+    "ogLocale": "fr_FR",
+    "ogImageAlt": "Logo Mboa blanc sur fond vert forêt"
   },
   "a11y": {
     "skipToContent": "Aller au contenu",
@@ -71,8 +72,8 @@
     "follow": "Suivez Mboa"
   },
   "home": {
-    "title": "Mboa, L'immobilier camerounais, autrement.",
-    "description": "Trouvez, visitez et signez votre logement à Douala et Yaoundé, le tout en ligne. Annonces vérifiées, visites avec un agent certifié, Contrat Mboa signé en ligne. Lancement du MVP en {date}.",
+    "title": "Mboa : trouver un logement vérifié à Douala et Yaoundé",
+    "description": "Annonces vérifiées, visites avec un agent certifié et contrat signé en ligne. Rejoignez la liste d'attente : lancement en {date}.",
     "hero": {
       "eyebrow": "Lancement du MVP : {date}",
       "heading": "Trouver un chez‑soi ne devrait pas être une épreuve.",
@@ -199,8 +200,8 @@
     "lead": "Le lien est peut-être erroné. Revenez à l'accueil pour découvrir Mboa."
   },
   "waitlist": {
-    "title": "Liste d'attente",
-    "description": "Rejoignez la liste d'attente Mboa et soyez prévenu dès le lancement du MVP, prévu en {date}, à Douala et Yaoundé.",
+    "title": "Liste d'attente Mboa : testez l'app avant tout le monde",
+    "description": "Rejoignez la liste d'attente Mboa : soyez prévenu en premier du lancement en {date}, testez l'application avant tout le monde (places limitées) et, si vous êtes propriétaire, publiez vos biens dès le premier jour.",
     "eyebrow": "Liste d'attente",
     "heading": "Soyez parmi les premiers",
     "highlight": "à découvrir Mboa.",
@@ -210,6 +211,15 @@
       "quick": "Deux minutes, sans engagement",
       "unsubscribe": "Désinscription à tout moment",
       "noResale": "Vos données ne sont jamais revendues"
+    },
+    "benefits": {
+      "title": "Pourquoi vous inscrire maintenant ?",
+      "b1Title": "Soyez prévenu en premier",
+      "b1Text": "Vous êtes informé dès l'ouverture de l'application, en {date}.",
+      "b2Title": "Testez l'application avant tout le monde",
+      "b2Text": "Un test fermé a lieu avant le lancement. Les places sont limitées : nous contactons une partie des inscrits.",
+      "b3Title": "Propriétaire ? Publiez dès le premier jour",
+      "b3Text": "Mettez vos biens en ligne dès l'ouverture, avec l'accompagnement de l'équipe Mboa."
     },
     "formTitle": "Je rejoins la liste",
     "form": {
@@ -272,8 +282,8 @@
       "highlight": "après votre inscription",
       "step1Title": "Vous vous inscrivez",
       "step1Text": "Deux minutes suffisent. Vous choisissez comment être prévenu : email ou WhatsApp.",
-      "step2Title": "Nous vous tenons informé",
-      "step2Text": "Vous suivez l'avancement du projet et pouvez nous dire ce qui compte pour vous.",
+      "step2Title": "Certains inscrits testent l'application",
+      "step2Text": "Avant le lancement, une partie des inscrits est invitée au test fermé. Tous suivent l'avancement du projet.",
       "step3Title": "Vous êtes prévenu du lancement",
       "step3Text": "Dès l'ouverture du MVP en {date}, vous êtes parmi les premiers informés."
     },
@@ -292,8 +302,12 @@
       "q4": "Que faites-vous de mes données ?",
       "a4": "Elles servent uniquement à vous informer du lancement et de l'avancement du projet. Elles ne sont jamais revendues. Tous les détails sont dans notre politique de confidentialité.",
       "q5": "Puis-je me désinscrire ?",
-      "a5": "Oui, à tout moment : via le lien présent dans chaque email, ou en nous écrivant."
-    }
+      "a5": "Oui, à tout moment : via le lien présent dans chaque email, ou en nous écrivant.",
+      "q6": "Comment participer au test de l'application ?",
+      "a6": "Inscrivez-vous sur la liste d'attente. Le test est fermé et les places sont limitées : nous contactons directement une partie des inscrits avant le lancement."
+    },
+    "ogImageAlt": "La liste d'attente Mboa est ouverte",
+    "ogImageText": "La liste d'attente est ouverte."
   },
   "legal": {
     "updated": "Dernière mise à jour : {date}",

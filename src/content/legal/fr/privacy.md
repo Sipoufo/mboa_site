@@ -1,7 +1,7 @@
 ---
 title: Politique de confidentialité
 description: Comment Mboa collecte, utilise et protège les données personnelles recueillies sur ce site et sur la liste d'attente.
-updated: 2026-10-27
+updated: 2026-11-03
 draft: true
 ---
 
@@ -17,14 +17,15 @@ Cette politique couvre le site Mboa et la liste d'attente. Les applications Mboa
 
 Nous collectons uniquement les données nécessaires.
 
-| Donnée                                                  | Pourquoi                                                    | Obligatoire            |
-| ------------------------------------------------------- | ----------------------------------------------------------- | ---------------------- |
-| Prénom                                                  | Vous adresser nos messages                                  | Oui                    |
-| Email et/ou numéro WhatsApp                             | Vous prévenir du lancement et de l'avancement du projet     | Au moins l'un des deux |
-| Ville                                                   | Savoir où vous attendez Mboa                                | Oui                    |
-| Profil (locataire, propriétaire, agence, agent…)        | Vous envoyer une information adaptée                        | Oui                    |
-| Réponse à « Qu'est-ce qui vous ferait utiliser Mboa ? » | Comprendre vos attentes et améliorer le produit             | Non                    |
-| Langue du site, date d'inscription et accord donné      | Vous écrire dans votre langue et prouver votre consentement | Automatique            |
+| Donnée                                                                | Pourquoi                                                    | Obligatoire            |
+| --------------------------------------------------------------------- | ----------------------------------------------------------- | ---------------------- |
+| Prénom                                                                | Vous adresser nos messages                                  | Oui                    |
+| Email et/ou numéro WhatsApp                                           | Vous prévenir du lancement et de l'avancement du projet     | Au moins l'un des deux |
+| Ville                                                                 | Savoir où vous attendez Mboa                                | Oui                    |
+| Profil (locataire, propriétaire, agence, agent…)                      | Vous envoyer une information adaptée                        | Oui                    |
+| Réponse à « Qu'est-ce qui vous ferait utiliser Mboa ? »               | Comprendre vos attentes et améliorer le produit             | Non                    |
+| Langue du site, date d'inscription et accord donné                    | Vous écrire dans votre langue et prouver votre consentement | Automatique            |
+| Origine de l'inscription (lien utilisé : Instagram, carte de visite…) | Savoir quels canaux font connaître Mboa                     | Automatique            |
 
 Le site ne vous demande aucune pièce d'identité, aucune donnée bancaire ni aucun identifiant Mobile Money.
 
@@ -66,7 +67,7 @@ Pour vous désinscrire, utilisez le lien présent dans chacun de nos emails ou �
 
 ## 9. Cookies et mesure d'audience
 
-Le site ne dépose aucun cookie publicitaire ni de mesure d'audience. La fréquentation est mesurée avec Cloudflare Web Analytics, sans cookie et de façon agrégée. La vérification anti-robot (Cloudflare Turnstile) ne sert qu'à protéger les formulaires.
+Le site ne dépose aucun cookie publicitaire ni de mesure d'audience. La fréquentation est mesurée avec Cloudflare Web Analytics, sans cookie et de façon agrégée. La vérification anti-robot (Cloudflare Turnstile) ne sert qu'à protéger les formulaires. Le lien par lequel vous êtes arrivé (par exemple depuis Instagram ou la carte de visite) est retenu le temps de votre visite dans votre navigateur, sans cookie, puis effacé à la fermeture de l'onglet.
 
 ## 10. Sécurité
 
