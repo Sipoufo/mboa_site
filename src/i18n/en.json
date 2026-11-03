@@ -4,7 +4,8 @@
     "titleSuffix": "Mboa",
     "defaultTitle": "Mboa, Cameroonian real estate, differently.",
     "defaultDescription": "Find, visit and sign for your home in Douala and Yaoundé, all online. Verified listings, visits with a certified agent, the Mboa Contract signed online.",
-    "ogLocale": "en_US"
+    "ogLocale": "en_US",
+    "ogImageAlt": "White Mboa logo on a forest green background"
   },
   "a11y": {
     "skipToContent": "Skip to content",
@@ -71,8 +72,8 @@
     "follow": "Follow Mboa"
   },
   "home": {
-    "title": "Mboa, Cameroonian real estate, differently.",
-    "description": "Find, visit and sign for your home in Douala and Yaoundé, all online. Verified listings, visits with a certified agent, the Mboa Contract signed online. MVP launch in {date}.",
+    "title": "Mboa: find a verified home in Douala and Yaoundé",
+    "description": "Verified listings, visits with a certified agent and a contract signed online. Join the waitlist: launching in {date}.",
     "hero": {
       "eyebrow": "MVP launch: {date}",
       "heading": "Finding a home shouldn't feel like a fight.",
@@ -199,7 +200,7 @@
     "lead": "The link may be broken. Head back home to discover Mboa."
   },
   "waitlist": {
-    "title": "Waitlist",
+    "title": "Mboa waitlist: test the app before everyone else",
     "description": "Join the Mboa waitlist: be the first to know when it launches in {date}, test the app before everyone else (limited spots) and, if you own property, list it from day one.",
     "eyebrow": "Waitlist",
     "heading": "Be among the first",
@@ -304,7 +305,9 @@
       "a5": "Yes, at any time: through the link in every email, or by writing to us.",
       "q6": "How can I take part in the app test?",
       "a6": "Join the waitlist. The test is closed and spots are limited: we contact some of the people on the list directly before the launch."
-    }
+    },
+    "ogImageAlt": "The Mboa waitlist is open",
+    "ogImageText": "The waitlist is open."
   },
   "legal": {
     "updated": "Last updated: {date}",

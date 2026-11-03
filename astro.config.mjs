@@ -4,6 +4,7 @@ import cloudflare from "@astrojs/cloudflare";
 import react from "@astrojs/react";
 import sitemap from "@astrojs/sitemap";
 import tailwindcss from "@tailwindcss/vite";
+import { withAlternates } from "./src/lib/sitemap.ts";
 
 const site = process.env.PUBLIC_SITE_URL ?? "https://mboacm.com";
 
@@ -21,12 +22,9 @@ export default defineConfig({
   }),
   integrations: [
     react(),
-    sitemap({
-      i18n: {
-        defaultLocale: "fr",
-        locales: { fr: "fr-CM", en: "en-CM" },
-      },
-    }),
+    // Alternates come from the localized route map (src/lib/sitemap.ts), not the
+    // integration's i18n option, which can't pair /liste-d-attente with /en/waitlist.
+    sitemap({ serialize: withAlternates }),
   ],
   i18n: {
     locales: ["fr", "en"],
@@ -59,6 +57,6 @@ export default defineConfig({
     plugins: [tailwindcss()],
   },
   redirects: {
-    '/carte': '/liste-d-attente?source=carte'
-  }
+    "/carte": "/liste-d-attente?source=carte",
+  },
 });

@@ -13,6 +13,7 @@ import { localeTags, type Locale } from "@/i18n/locales";
 import { formatMonth, localizedPath, t } from "@/i18n/utils";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import { TURNSTILE_TEST_SITE_KEY } from "@/lib/forms/turnstile";
+import { faqPageJsonLd } from "@/lib/jsonld";
 import { settings } from "@/lib/settings";
 
 /**
@@ -63,6 +64,9 @@ const faq = ([1, 6, 2, 3, 4, 5] as const).map((n) => ({
   routeKey="waitlist"
   title={t(locale, "waitlist.title")}
   description={t(locale, "waitlist.description", { date })}
+  ogImage={`/og/mboa-liste-attente-${locale}.png`}
+  ogImageAlt={t(locale, "waitlist.ogImageAlt")}
+  jsonLd={[faqPageJsonLd(faq)]}
 >
   <section class="relative isolate overflow-hidden">
     <DecorDiscs />
