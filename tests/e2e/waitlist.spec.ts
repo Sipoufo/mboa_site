@@ -82,3 +82,41 @@ test("legal pages flag missing company details", async ({ page }) => {
   await page.goto("/mentions-legales");
   await expect(page.getByText("[à compléter]").first()).toBeVisible();
 });
+
+test.describe("sign-up source", () => {
+  test("is direct without a source", async ({ page }) => {
+    const requests = await mockApi(page, 200, { ok: true, status: "subscribed" });
+    await page.goto("/liste-d-attente");
+    await fillValidForm(page);
+    await page.getByRole("button", { name: "Rejoindre la liste d'attente" }).last().click();
+    await expect(page.getByRole("heading", { name: "C'est noté, Ines !" })).toBeVisible();
+    expect(requests[0]).toMatchObject({ source: "direct" });
+  });
+
+  test("comes from the QR code link", async ({ page }) => {
+    const requests = await mockApi(page, 200, { ok: true, status: "subscribed" });
+    await page.goto("/liste-d-attente?source=carte");
+    await fillValidForm(page);
+    await page.getByRole("button", { name: "Rejoindre la liste d'attente" }).last().click();
+    await expect(page.getByRole("heading", { name: "C'est noté, Ines !" })).toBeVisible();
+    expect(requests[0]).toMatchObject({ source: "carte" });
+  });
+
+  test("is remembered from the landing page", async ({ page }) => {
+    const requests = await mockApi(page, 200, { ok: true, status: "subscribed" });
+    await page.goto("/?source=instagram");
+    await page.goto("/liste-d-attente");
+    await fillValidForm(page);
+    await page.getByRole("button", { name: "Rejoindre la liste d'attente" }).last().click();
+    await expect(page.getByRole("heading", { name: "C'est noté, Ines !" })).toBeVisible();
+    expect(requests[0]).toMatchObject({ source: "instagram" });
+  });
+});
+
+test("shows the sign-up benefits, including the closed test", async ({ page }) => {
+  await page.goto("/liste-d-attente");
+  await expect(page.getByRole("heading", { name: "Pourquoi vous inscrire maintenant ?" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Testez l'application avant tout le monde" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Propriétaire ? Publiez dès le premier jour" })).toBeVisible();
+  await expect(page.getByText("Les places sont limitées", { exact: false }).first()).toBeVisible();
+});

@@ -200,7 +200,7 @@
   },
   "waitlist": {
     "title": "Waitlist",
-    "description": "Join the Mboa waitlist and be the first to know when the MVP launches in {date}, in Douala and Yaoundé.",
+    "description": "Join the Mboa waitlist: be the first to know when it launches in {date}, test the app before everyone else (limited spots) and, if you own property, list it from day one.",
     "eyebrow": "Waitlist",
     "heading": "Be among the first",
     "highlight": "to discover Mboa.",
@@ -210,6 +210,15 @@
       "quick": "Two minutes, no commitment",
       "unsubscribe": "Unsubscribe at any time",
       "noResale": "Your data is never sold"
+    },
+    "benefits": {
+      "title": "Why sign up now?",
+      "b1Title": "Be the first to know",
+      "b1Text": "You hear about it as soon as the app opens, in {date}.",
+      "b2Title": "Test the app before everyone else",
+      "b2Text": "A closed test runs before the launch. Spots are limited: we reach out to some of the people on the list.",
+      "b3Title": "Property owner? List from day one",
+      "b3Text": "Put your properties online as soon as it opens, with support from the Mboa team."
     },
     "formTitle": "Join the list",
     "form": {
@@ -272,8 +281,8 @@
       "highlight": "after you sign up",
       "step1Title": "You sign up",
       "step1Text": "It takes two minutes. You choose how we reach you: email or WhatsApp.",
-      "step2Title": "We keep you posted",
-      "step2Text": "You follow the project's progress and can tell us what matters to you.",
+      "step2Title": "Some members test the app",
+      "step2Text": "Before the launch, some people on the list are invited to the closed test. Everyone follows the project's progress.",
       "step3Title": "You hear about the launch first",
       "step3Text": "As soon as the MVP opens in {date}, you're among the first to know."
     },
@@ -292,7 +301,9 @@
       "q4": "What do you do with my data?",
       "a4": "It is only used to tell you about the launch and the project's progress. It is never sold. Everything is explained in our privacy policy.",
       "q5": "Can I unsubscribe?",
-      "a5": "Yes, at any time: through the link in every email, or by writing to us."
+      "a5": "Yes, at any time: through the link in every email, or by writing to us.",
+      "q6": "How can I take part in the app test?",
+      "a6": "Join the waitlist. The test is closed and spots are limited: we contact some of the people on the list directly before the launch."
     }
   },
   "legal": {

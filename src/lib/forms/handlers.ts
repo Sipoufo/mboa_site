@@ -43,7 +43,7 @@ function toContact(data: WaitlistSubmission): BrevoContact {
     CITY: data.city,
     PROFILE: data.profile,
     LOCALE: data.locale,
-    SOURCE: "site-waitlist",
+    SOURCE: data.source,
   };
   if (data.whatsapp) attributes.WHATSAPP = data.whatsapp;
   if (data.motivation) attributes.MOTIVATION = data.motivation;

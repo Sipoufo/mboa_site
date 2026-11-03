@@ -1,6 +1,6 @@
 import { z } from "astro/zod";
 import { locales } from "@/i18n/locales";
-import { cities, limits, normalizePhone, profiles } from "./waitlist-fields";
+import { cities, DEFAULT_SOURCE, limits, normalizePhone, normalizeSource, profiles } from "./waitlist-fields";
 
 export * from "./waitlist-fields";
 
@@ -21,6 +21,11 @@ export const waitlistSchema = z
     consent: z.literal(true),
     locale: z.enum(locales),
     turnstileToken: z.string().default(""),
+    /** Channel the visitor came from — an unknown or malformed value counts as "direct". */
+    source: z
+      .string()
+      .optional()
+      .transform((value) => normalizeSource(value) ?? DEFAULT_SOURCE),
     /** Honeypot — real visitors never see or fill it. */
     company: z.string().max(0).optional(),
   })

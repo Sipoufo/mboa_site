@@ -30,6 +30,19 @@ export function normalizePhone(input: string): string | null {
   return /^\+[1-9]\d{7,14}$/.test(value) ? value : null;
 }
 
+/**
+ * Sign-up origin, to know which channel works: `?source=instagram`, `?source=carte` (QR code)…
+ * Read from any page of the visit (kept in sessionStorage under SOURCE_KEY), "direct" otherwise.
+ */
+export const SOURCE_KEY = "mboa-source";
+export const DEFAULT_SOURCE = "direct";
+
+/** Lowercase slug (letters, digits, - and _), max 32 characters; anything else is ignored. */
+export function normalizeSource(value: string | null | undefined): string | null {
+  const source = (value ?? "").trim().toLowerCase();
+  return /^[a-z0-9][a-z0-9_-]{0,31}$/.test(source) ? source : null;
+}
+
 /** Field names that can carry a validation error back to the form. */
 export const waitlistFields = ["firstName", "email", "whatsapp", "city", "profile", "motivation", "consent"] as const;
 export type WaitlistField = (typeof waitlistFields)[number];

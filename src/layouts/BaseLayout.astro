@@ -59,6 +59,17 @@ const analyticsToken = import.meta.env.PUBLIC_CF_ANALYTICS_TOKEN;
     <Font cssVariable="--font-inter" preload />
 
     <script is:inline>
+      // Remember the sign-up channel (?source=instagram, ?source=carte…) for the rest of the visit,
+      // so it survives navigation to the waitlist. Key = SOURCE_KEY in src/lib/forms/waitlist-fields.ts.
+      try {
+        const params = new URLSearchParams(location.search);
+        const source = params.get("source") || params.get("utm_source");
+        if (source) sessionStorage.setItem("mboa-source", source);
+      } catch {
+        // Storage blocked (private mode): the form then relies on the URL alone.
+      }
+    </script>
+    <script is:inline>
       // Scroll-reveal fallback for browsers without CSS scroll-driven animations (see global.css).
       if (
         !(window.CSS && CSS.supports("animation-timeline: view()")) &&
