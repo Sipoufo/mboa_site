@@ -185,16 +185,30 @@ describe("handleWaitlist", () => {
     expect(calls.some((call) => call.url.includes("brevo"))).toBe(false);
   });
 
-  it("silently drops honeypot submissions", async () => {
+  it("silently drops honeypot submissions, and logs it", async () => {
     const { fn, calls } = fakeFetch();
-    const response = await handleWaitlist(post({ ...valid, company: "Spam Inc" }), {
+    const log = { warn: vi.fn(), error: vi.fn() };
+    const response = await handleWaitlist(post({ ...valid, hp: "Spam Inc" }), {
+      env: configured,
+      dev: false,
+      fetch: fn,
+      log,
+    });
+    expect(response.status).toBe(200);
+    expect(calls).toEqual([]);
+    expect(log.warn).toHaveBeenCalledWith("[waitlist] honeypot filled: submission dropped");
+  });
+
+  it("ignores the old honeypot name a browser may autofill (regression 2026-11-03)", async () => {
+    const { fn, calls } = fakeFetch();
+    const response = await handleWaitlist(post({ ...valid, company: "Mboa SAS" }), {
       env: configured,
       dev: false,
       fetch: fn,
       log: silent,
     });
-    expect(response.status).toBe(200);
-    expect(calls).toEqual([]);
+    expect(await response.json()).toEqual({ ok: true, status: "subscribed" });
+    expect(calls.some((call) => call.url.endsWith("/contacts"))).toBe(true);
   });
 
   it("answers 400 on a malformed body", async () => {

@@ -73,8 +73,10 @@ export async function handleWaitlist(request: Request, deps: HandlerDeps): Promi
         fields[field as WaitlistField] ??= issue.code === "custom" ? issue.message : "invalid";
       }
     }
-    // A filled honeypot is a bot: answer like a success, store nothing.
-    if (parsed.error.issues.some((issue) => issue.path[0] === "company")) {
+    // A filled honeypot is a bot: answer like a success, store nothing — but log it, so a
+    // silent drop of real visitors (e.g. by browser autofill) is visible in `wrangler tail`.
+    if (parsed.error.issues.some((issue) => issue.path[0] === "hp")) {
+      log.warn("[waitlist] honeypot filled: submission dropped");
       return json({ ok: true, status: "subscribed" });
     }
     return json({ ok: false, error: "validation", fields }, 400);
