@@ -27,7 +27,9 @@ export const waitlistSchema = z
       .optional()
       .transform((value) => normalizeSource(value) ?? DEFAULT_SOURCE),
     /** Honeypot — real visitors never see or fill it. */
-    company: z.string().max(0).optional(),
+    // Not named like a real field ("company", "website"…): browsers autofill those even when
+    // hidden, which made real visitors look like bots (bug of 2026-11-03).
+    hp: z.string().max(0).optional(),
   })
   .transform((data, ctx) => {
     let whatsapp = "";

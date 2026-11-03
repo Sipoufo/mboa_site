@@ -171,7 +171,7 @@ export default function WaitlistForm({ copy, turnstileSiteKey }: Props) {
           profile: form.get("profile"),
           motivation: form.get("motivation"),
           consent: form.get("consent") === "on",
-          company: form.get("company") || undefined,
+          hp: form.get("mboa_hp") || undefined,
           locale: copy.locale,
           source: currentSource(),
           turnstileToken: token.current,
@@ -388,8 +388,17 @@ export default function WaitlistForm({ copy, turnstileSiteKey }: Props) {
 
       {/* Honeypot: hidden from people and assistive tech, bots fill it. */}
       <div aria-hidden="true" className="absolute -left-[9999px] h-px w-px overflow-hidden">
-        <label htmlFor={`${id}-company`}>{labels.honeypot}</label>
-        <input id={`${id}-company`} name="company" tabIndex={-1} autoComplete="off" />
+        {/* Name/id must not look like a real field, or browser autofill fills it (see waitlist.ts). */}
+        <label htmlFor={`${id}-hp`}>{labels.honeypot}</label>
+        <input
+          id={`${id}-hp`}
+          name="mboa_hp"
+          type="text"
+          tabIndex={-1}
+          autoComplete="off"
+          data-1p-ignore
+          data-lpignore="true"
+        />
       </div>
 
       <div>

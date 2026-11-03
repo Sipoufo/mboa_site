@@ -120,3 +120,37 @@ test("shows the sign-up benefits, including the closed test", async ({ page }) =
   await expect(page.getByRole("heading", { name: "Propriétaire ? Publiez dès le premier jour" })).toBeVisible();
   await expect(page.getByText("Les places sont limitées", { exact: false }).first()).toBeVisible();
 });
+
+test("the anti-bot trap field cannot be autofilled by browsers (regression 2026-11-03)", async ({ page }) => {
+  await page.goto("/liste-d-attente");
+  const trap = page.locator('[aria-hidden="true"] input');
+  await expect(trap).toHaveCount(1);
+  const name = (await trap.getAttribute("name")) ?? "";
+  const id = (await trap.getAttribute("id")) ?? "";
+  // Tokens Chrome/Safari autofill recognise in a field's name or id.
+  for (const token of [
+    "company",
+    "organization",
+    "organisation",
+    "name",
+    "email",
+    "mail",
+    "tel",
+    "phone",
+    "url",
+    "website",
+    "address",
+    "city",
+  ]) {
+    expect(`${name} ${id}`.toLowerCase()).not.toContain(token);
+  }
+});
+
+test("a valid sign-up does not send the trap field", async ({ page }) => {
+  const requests = await mockApi(page, 200, { ok: true, status: "subscribed" });
+  await page.goto("/liste-d-attente");
+  await fillValidForm(page);
+  await page.getByRole("button", { name: "Rejoindre la liste d'attente" }).last().click();
+  await expect(page.getByRole("heading", { name: "C'est noté, Ines !" })).toBeVisible();
+  expect(requests[0]).not.toHaveProperty("hp");
+});
