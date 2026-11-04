@@ -30,13 +30,17 @@ export function organizationJsonLd(site: URL, description: string): JsonLdNode {
   };
 }
 
-/** schema.org WebSite — lets Google show "Mboa" as the site name in results. */
+/**
+ * schema.org WebSite — lets Google show "Mboa" as the site name in results. "Mboa" is a common
+ * word, so Google may refuse it: alternateName is its fallback, and must read as the brand
+ * (not "mboacm", which Google would otherwise derive from the domain).
+ */
 export function websiteJsonLd(site: URL, locale: Locale): JsonLdNode {
   return {
     "@type": "WebSite",
     "@id": new URL("/#website", site).toString(),
     name: "Mboa",
-    alternateName: "mboacm",
+    alternateName: "Mboa Cameroun",
     url: site.toString(),
     inLanguage: localeTags[locale],
     publisher: { "@id": new URL("/#organization", site).toString() },

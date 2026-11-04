@@ -39,6 +39,13 @@ describe("JSON-LD graph", () => {
     expect(website.publisher["@id"]).toBe("https://mboacm.com/#organization");
   });
 
+  it("names the site after the brand, never after the domain", () => {
+    const website = graph["@graph"][1] as { name: string; alternateName: string };
+    expect(website.name).toBe("Mboa");
+    // Google's fallback when it rejects "Mboa" alone: must still read as the brand.
+    expect(website.alternateName).toBe("Mboa Cameroun");
+  });
+
   it("strips tracking parameters from social profiles", () => {
     const organization = graph["@graph"][0] as { sameAs?: string[] };
     for (const url of organization.sameAs ?? []) expect(url).not.toMatch(/[?#]/);
