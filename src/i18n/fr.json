@@ -75,6 +75,7 @@
     "title": "Mboa : trouver un logement vérifié à Douala et Yaoundé",
     "description": "Annonces vérifiées, visites avec un agent certifié et contrat signé en ligne. Rejoignez la liste d'attente : lancement en {date}.",
     "hero": {
+      "kicker": "Mboa, le logement vérifié au Cameroun",
       "eyebrow": "Lancement du MVP : {date}",
       "heading": "Trouver un chez‑soi ne devrait pas être une épreuve.",
       "lead": "Mboa met en relation locataires et propriétaires vérifiés, propose des visites accompagnées par un agent certifié et la signature de contrat en ligne, tout en intégrant la gestion intégrale de vos biens et de leurs finances.",

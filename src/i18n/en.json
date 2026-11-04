@@ -75,6 +75,7 @@
     "title": "Mboa: find a verified home in Douala and Yaoundé",
     "description": "Verified listings, visits with a certified agent and a contract signed online. Join the waitlist: launching in {date}.",
     "hero": {
+      "kicker": "Mboa, verified housing in Cameroon",
       "eyebrow": "MVP launch: {date}",
       "heading": "Finding a home shouldn't feel like a fight.",
       "lead": "Mboa connects tenants with verified landlords, offers viewings led by a certified agent and online contract signing, while providing comprehensive management of your properties and their finances.",

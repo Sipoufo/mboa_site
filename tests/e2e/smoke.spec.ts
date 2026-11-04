@@ -113,6 +113,14 @@ test.describe("SEO", () => {
     await expect(page.locator('meta[property="og:image:alt"]')).toHaveAttribute("content", /.+/);
   });
 
+  test("home h1 names the brand in both locales", async ({ page }) => {
+    // Google reads the h1 to pick the site name: without "Mboa" it fell back to "Mboacm".
+    for (const path of ["/", "/en"]) {
+      await page.goto(path);
+      await expect(page.locator("h1")).toContainText("Mboa");
+    }
+  });
+
   test("sitemap pairs FR and EN versions", async ({ request }) => {
     const xml = await (await request.get("/sitemap-0.xml")).text();
     expect(xml).toContain('hreflang="en-CM" href="https://mboacm.com/en/waitlist"');

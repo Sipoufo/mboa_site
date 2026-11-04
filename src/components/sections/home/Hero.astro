@@ -32,7 +32,11 @@ const date = formatMonth(settings.launch.mvpDate, locale);
           {t(locale, "home.hero.eyebrow", { date })}
         </Badge>
       </div>
-      <h1 class="mt-6 text-display">{t(locale, "home.hero.heading")}</h1>
+      <!-- The kicker sits inside the h1 so search engines read the brand and the subject there. -->
+      <h1 class="mt-6">
+        <span class="block text-h3 text-forest">{t(locale, "home.hero.kicker")}</span>
+        <span class="mt-3 block text-display">{t(locale, "home.hero.heading")}</span>
+      </h1>
       <p class="mt-6 max-w-xl text-lead text-gray-dark" style="--i: 1">
         {t(locale, "home.hero.lead")}
       </p>
